@@ -9,13 +9,13 @@ agent.user_agent = 'Mozilla/5.0'
 
 bad = " "
 
-results = CSV.open("csv/scripps_competitions_2005.csv","w")
+results = CSV.open("csv/scripps_competitions_1997.csv","w")
 
-path = '/html/body/table/tr/td/div/center/table/tr[position()>2]'
+path = '/html/body/table[1]/tr/td[2]/center/table/tr'
 
-year = 2005
+year = 1997
 
-url = "https://web.archive.org/web/20050901025018/http://www.spellingbee.com/05bee/resultsindex.shtml"
+url = "https://web.archive.org/web/20000817090330/http://www.spellingbee.com/results97.htm"
 
 begin
   page = agent.get(url)
@@ -28,23 +28,27 @@ page.parser.xpath(path).each_with_index do |tr,i|
   row = [year,i]
   round_id = 1
   tr.xpath("td").each_with_index do |td,j|
-    case j
-    when 0
+    case j%3
+    when 0,1
       next
-    when 1
+    when 2
       btext = td.text.strip rescue nil
       td.search("a").each_with_index do |a,k|
         href = a.attributes["href"].value.strip rescue nil
         text = a.text.strip rescue nil
         text.gsub!(bad,"") rescue nil
         text.gsub!("  "," ") rescue nil
-        if (text =~ /^Round\s[0-9]+$/)
-          round_id = text.split(" ")[1]
+        if (text =~ /^Round[\s]*[0-9]+$/)
+          round_id = text.split[1]
         end
         if (btext =~ /Status/)
           type = "Status"
         elsif (btext =~ /Written/)
           type = "Written"
+        elsif (btext =~ /Qualifiers/)
+          type = "Qualifiers"
+        elsif (btext =~ /Summary/)
+          type = "Summary"
         elsif (text =~ /Round/)
           type = "Spelling"
         else

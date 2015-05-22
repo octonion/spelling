@@ -9,13 +9,13 @@ agent.user_agent = 'Mozilla/5.0'
 
 bad = " "
 
-results = CSV.open("csv/scripps_competitions_2005.csv","w")
+results = CSV.open("csv/scripps_competitions_2003.csv","w")
 
 path = '/html/body/table/tr/td/div/center/table/tr[position()>2]'
 
-year = 2005
+year = 2003
 
-url = "https://web.archive.org/web/20050901025018/http://www.spellingbee.com/05bee/resultsindex.shtml"
+url = "https://web.archive.org/web/20030811070931/http://spellingbee.com/03bee/resultsindex.shtml"
 
 begin
   page = agent.get(url)
@@ -45,6 +45,8 @@ page.parser.xpath(path).each_with_index do |tr,i|
           type = "Status"
         elsif (btext =~ /Written/)
           type = "Written"
+        elsif (btext =~ /Qualifiers/)
+          type = "Qualifiers"
         elsif (text =~ /Round/)
           type = "Spelling"
         else
