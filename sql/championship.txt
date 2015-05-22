@@ -1,0 +1,27 @@
+BEGIN
+ year |     lower     | round_id 
+------+---------------+----------
+ 1996 | vivisepulture |       13
+ 1997 | euonym        |       23
+ 1998 | chiaroscurist |       11
+ 1999 | logorrhea     |       12
+ 2000 | demarche      |       15
+ 2001 | succedaneum   |       16
+ 2002 | prospicience  |       11
+ 2003 | pococurante   |       15
+ 2004 | autochthonous |       15
+ 2005 | appoggiatura  |       19
+ 2006 | ursprache     |       20
+ 2007 | serrefine     |       13
+ 2008 | guerdon       |       16
+ 2009 | laodicean     |       16
+ 2010 | stromuhr      |        9
+ 2011 | cymotrichous  |       20
+ 2012 | guetapens     |       13
+ 2013 | knaidel       |       16
+ 2014 | feuilleton    |       22
+ 2014 | stichomythia  |       22
+(20 rows)
+
+COPY 20
+COMMIT
