@@ -14,3 +14,7 @@ psql spelling -f schema/create_schema.sql
 cp csv/scripps_results.csv /tmp/results.csv
 psql spelling -f loaders/load_scripps_results.sql
 rm /tmp/results.csv
+
+cat csv/scripps_results_*.csv >> /tmp/results.csv
+psql spelling -f loaders/load_scripps_results_older.sql
+rm /tmp/results.csv

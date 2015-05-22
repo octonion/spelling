@@ -13,7 +13,7 @@ create table scripps.results (
 	word_meaning	      text,
 	word_url	      text,
 	spelled		      text,
-	error		      text,
+	bonus_error	      text,
 	primary key (year,round_id,speller_id)
 );
 
