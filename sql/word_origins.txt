@@ -1,0 +1,47 @@
+BEGIN
+ round_id |      word       |               origin                | outcome 
+----------+-----------------+-------------------------------------+---------
+       10 | kabaragoya      | origin unknown                      | wrong
+       10 | shibuichi       | Japanese                            | right
+       10 | brindisi        |                                     | right
+       10 | kalanchoe       | New Latin                           | right
+       10 | criollismo      | Spanish                             | right
+       10 | typothetae      | New Latin                           | right
+       10 | chalybeate      | probably from New Latin             | right
+       11 | aetites         | borrowed from Latin                 | wrong
+       11 | irbis           | Russian                             | wrong
+       11 | bradypodoid     | New Latin                           | right
+       11 | bagwyn          | origin unknown                      | right
+       11 | kulturkreis     | German                              | right
+       11 | croquignole     | French                              | right
+       12 | eryngo          | modification of Latin               | right
+       12 | semmel          | German                              | right
+       12 | dépaysé         | French                              | wrong
+       12 | ctenoid         | International Scientific Vocabulary | right
+       13 | bamboche        | American French (Haiti)             | right
+       13 | lamentabile     | Italian                             | right
+       13 | lotophagi       | Latin                               | right
+       14 | abaisse         | borrowed from French                | right
+       14 | nocifensor      |                                     | right
+       14 | Aeschylean      |                                     | right
+       15 | Kierkegaardian  |                                     | wrong
+       15 | characin        | ultimately from Greek               | right
+       15 | gemeinschaft    | German                              | right
+       16 | corpsbruder     | German                              | wrong
+       16 | antigropelos    | perhaps irregularly from Greek      | wrong
+       17 | skandhas        | Sanskrit                            | right
+       17 | Hyblaean        | Latin                               | right
+       18 | feijoada        | Portuguese                          | right
+       18 | augenphilologie | German                              | right
+       19 | sdrucciola      | Italian                             | right
+       19 | holluschick     | modification of Russian             | right
+       20 | thymelici       | Latin                               | right
+       20 | paixtle         | Mexican Spanish                     | right
+       21 | encaenia        | New Latin                           | right
+       21 | terreplein      | Middle French                       | right
+       22 | stichomythia    | Greek                               | right
+       22 | feuilleton      | French                              | right
+(40 rows)
+
+COPY 40
+COMMIT
