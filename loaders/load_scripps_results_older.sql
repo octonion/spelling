@@ -27,4 +27,9 @@ spelled,bonus_error
 from ro
 );
 
+-- Separate out
+
+update scripps.results
+  set word=lower(unaccent(word));
+
 commit;
