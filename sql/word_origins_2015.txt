@@ -565,7 +565,141 @@ BEGIN
   3 | Allyson Scribner           | patissier       | French                                                                                   | wrong
   3 | Katharine Wang             | sambal          | Malay/Tagalog                                                                            | right
   3 | Sravanth Malla             | yeomanry        |                                                                                          | right
-(564 rows)
+  5 | Victor Sutton              | diamante        |                                                                                          | wrong
+  5 | Marcus Behling             | apivorous       |                                                                                          | right
+  5 | Eesha Sohail               | glaswegian      |                                                                                          | right
+  5 | Jillian Fusi               | psychagogy      |                                                                                          | wrong
+  5 | Cooper Komatsu             | inessive        |                                                                                          | right
+  5 | Jenna-May Ingal            | vinaceous       | Latin                                                                                    | right
+  5 | Snehaa Ganesh Kumar        | camarilla       |                                                                                          | right
+  5 | Sylvie Lamontagne          | monepic         |                                                                                          | right
+  5 | Vaishnavi Suren            | kipuka          | Hawaiian                                                                                 | right
+  5 | Siyona Mishra              | procrypsis      |                                                                                          | right
+  5 | Monisha Mahadevan          | rollmops        |                                                                                          | wrong
+  5 | Aniket Nuthalapati         | osteitic        |                                                                                          | right
+  5 | Cy Orentlicher             | capotasto       |                                                                                          | right
+  5 | Sara-Beth McPherson        | agaric          |                                                                                          | wrong
+  5 | Vanya Shivashankar         | consomme        |                                                                                          | right
+  5 | Paul Keaton                | faineancy       |                                                                                          | right
+  5 | Christy Jestin             | nival           |                                                                                          | right
+  5 | Lily Mears                 | vilipend        | Middle English                                                                           | right
+  5 | Nathaniel Britton          | rescissible     |                                                                                          | wrong
+  5 | Maxwell Meyer              | colcha          |                                                                                          | right
+  5 | Christine Farnberg         | syrette         |                                                                                          | wrong
+  5 | Dev Jaiswal                | boucle          |                                                                                          | right
+  5 | River Blount               | baragnosis      |                                                                                          | right
+  5 | Gokul Venkatachalam        | epicede         | Latin                                                                                    | right
+  5 | Arushi Kalpande            | holoku          |                                                                                          | right
+  5 | Jairam Hathwar             | noctidiurnal    |                                                                                          | right
+  5 | Sai Vishudhi Chandrasekhar | moulage         | French                                                                                   | right
+  5 | Srinath Mahankali          | parorexia       | New Latin                                                                                | right
+  5 | Dylan O'Connor             | arcology        | chitectural e                                                                            | wrong
+  5 | Akshra Paimagam            | calefy          |                                                                                          | wrong
+  5 | Rohan Sachdev              | nictitate       |                                                                                          | wrong
+  5 | Owen Kovalik               | tiple           |                                                                                          | right
+  5 | Lipika Narisetti           | macfarlane      | prob from the name                                                                       | right
+  5 | Manu Nair                  | smorzando       |                                                                                          | right
+  5 | Abhilash Yarlagadda        | cataphyll       |                                                                                          | wrong
+  5 | Melina Gabele              | schnell         |                                                                                          | right
+  5 | Cole Shafer-Ray            | antenatus       |                                                                                          | right
+  5 | William Yaeger             | jaspe           |                                                                                          | right
+  5 | Smrithi Upadhyayula        | pleonexia       |                                                                                          | right
+  5 | Michelle Yakubek           | barbellate      | New Latin                                                                                | right
+  5 | Shobha Dasari              | frangipane      | French                                                                                   | right
+  5 | Siddharth Krishnakumar     | katakana        |                                                                                          | right
+  5 | Muriel Cotman              | punchinello     |                                                                                          | right
+  5 | Samuel Pereles             | piolet          | French                                                                                   | right
+  5 | Shiv Lamba                 | eupyrion        |                                                                                          | wrong
+  5 | Ankita Vadiala             | improvisatrice  |                                                                                          | right
+  5 | Tejas Muthusamy            | saxaul          |                                                                                          | right
+  5 | Arjun Jagjivan             | mulct           | Latin                                                                                    | right
+  5 | Katharine Wang             | periastron      |                                                                                          | right
+  6 | Marcus Behling             | vernissage      | French                                                                                   | right
+  6 | Eesha Sohail               | morphallaxis    |                                                                                          | wrong
+  6 | Cooper Komatsu             | dicynodon       |                                                                                          | right
+  6 | Jenna-May Ingal            | periegesis      | Late Latin                                                                               | wrong
+  6 | Snehaa Ganesh Kumar        | gibus           | French                                                                                   | right
+  6 | Sylvie Lamontagne          | hanswurst       |                                                                                          | right
+  6 | Vaishnavi Suren            | realpolitik     | German                                                                                   | right
+  6 | Siyona Mishra              | emmetropia      |                                                                                          | right
+  6 | Aniket Nuthalapati         | tristeza        |                                                                                          | wrong
+  6 | Cy Orentlicher             | oppidan         | Latin                                                                                    | wrong
+  6 | Vanya Shivashankar         | mediobrome      |                                                                                          | right
+  6 | Paul Keaton                | canotier        |                                                                                          | right
+  6 | Christy Jestin             | opisometer      |                                                                                          | right
+  6 | Lily Mears                 | schefflera      | New Latin                                                                                | wrong
+  6 | Maxwell Meyer              | railleur        | French                                                                                   | right
+  6 | Dev Jaiswal                | naranjilla      |                                                                                          | right
+  6 | River Blount               | fauces          |                                                                                          | wrong
+  6 | Gokul Venkatachalam        | bordereau       | French                                                                                   | right
+  6 | Arushi Kalpande            | dicoccous       |                                                                                          | wrong
+  6 | Jairam Hathwar             | riegel          |                                                                                          | wrong
+  6 | Sai Vishudhi Chandrasekhar | nomothetic      | Greek                                                                                    | right
+  6 | Srinath Mahankali          | sphenogram      |                                                                                          | right
+  6 | Owen Kovalik               | xenodochium     |                                                                                          | wrong
+  6 | Lipika Narisetti           | rechauffe       |                                                                                          | wrong
+  6 | Manu Nair                  | contrapposto    |                                                                                          | right
+  6 | Melina Gabele              | schiller        |                                                                                          | right
+  6 | Cole Shafer-Ray            | hapalonychia    |                                                                                          | right
+  6 | William Yaeger             | corroboree      |                                                                                          | wrong
+  6 | Smrithi Upadhyayula        | cimex           |                                                                                          | wrong
+  6 | Michelle Yakubek           | phylephebic     |                                                                                          | wrong
+  6 | Shobha Dasari              | siderism        |                                                                                          | wrong
+  6 | Siddharth Krishnakumar     | respue          |                                                                                          | right
+  6 | Muriel Cotman              | cupressineous   | New Latin                                                                                | wrong
+  6 | Samuel Pereles             | sinciput        |                                                                                          | right
+  6 | Ankita Vadiala             | ballabile       | Italian                                                                                  | right
+  6 | Tejas Muthusamy            | symblepharon    |                                                                                          | right
+  6 | Arjun Jagjivan             | decretum        |                                                                                          | wrong
+  6 | Katharine Wang             | cinquecento     | Italian                                                                                  | wrong
+  7 | Snehaa Ganesh Kumar        | bouillabaisse   | French                                                                                   | right
+  7 | Sylvie Lamontagne          | cerastes        |                                                                                          | wrong
+  7 | Siyona Mishra              | hacek           |                                                                                          | wrong
+  7 | Vanya Shivashankar         | cytopoiesis     |                                                                                          | right
+  7 | Paul Keaton                | crannog         |                                                                                          | right
+  7 | Dev Jaiswal                | bacchius        |                                                                                          | right
+  7 | Gokul Venkatachalam        | cocozelle       |                                                                                          | right
+  7 | Cole Shafer-Ray            | samadhi         |                                                                                          | right
+  7 | Siddharth Krishnakumar     | albumblatt      |                                                                                          | right
+  7 | Tejas Muthusamy            | billiken        |                                                                                          | right
+  8 | Snehaa Ganesh Kumar        | hippocrene      |                                                                                          | right
+  8 | Vanya Shivashankar         | backfisch       |                                                                                          | right
+  8 | Paul Keaton                | poikilitic      |                                                                                          | wrong
+  8 | Dev Jaiswal                | gnathostome     |                                                                                          | right
+  8 | Gokul Venkatachalam        | poblacion       |                                                                                          | right
+  8 | Cole Shafer-Ray            | commissurotomy  |                                                                                          | right
+  8 | Siddharth Krishnakumar     | reclame         |                                                                                          | right
+  8 | Tejas Muthusamy            | tartarean       |                                                                                          | wrong
+  9 | Snehaa Ganesh Kumar        | oflag           |                                                                                          | wrong
+  9 | Vanya Shivashankar         | bayadere        |                                                                                          | right
+  9 | Dev Jaiswal                | iridocyclitis   |                                                                                          | wrong
+  9 | Gokul Venkatachalam        | canossa         |                                                                                          | right
+  9 | Cole Shafer-Ray            | tortillon       |                                                                                          | right
+  9 | Siddharth Krishnakumar     | minhag          |                                                                                          | wrong
+ 10 | Vanya Shivashankar         | cibarial        |                                                                                          | right
+ 10 | Gokul Venkatachalam        | zygoneure       |                                                                                          | right
+ 10 | Cole Shafer-Ray            | acritarch       |                                                                                          | wrong
+ 11 | Vanya Shivashankar         | bouquetiere     |                                                                                          | right
+ 11 | Gokul Venkatachalam        | caudillismo     |                                                                                          | right
+ 12 | Vanya Shivashankar         | thamakau        |                                                                                          | right
+ 12 | Gokul Venkatachalam        | scytale         |                                                                                          | right
+ 13 | Vanya Shivashankar         | tantieme        |                                                                                          | right
+ 13 | Gokul Venkatachalam        | cypseline       |                                                                                          | right
+ 14 | Vanya Shivashankar         | urgrund         | German                                                                                   | right
+ 14 | Gokul Venkatachalam        | filicite        |                                                                                          | right
+ 15 | Vanya Shivashankar         | myrmotherine    |                                                                                          | right
+ 15 | Gokul Venkatachalam        | sprachgefuhl    |                                                                                          | right
+ 16 | Vanya Shivashankar         | zimocca         |                                                                                          | right
+ 16 | Gokul Venkatachalam        | nixtamal        |                                                                                          | right
+ 17 | Vanya Shivashankar         | hippocrepiform  |                                                                                          | right
+ 17 | Gokul Venkatachalam        | paroemiology    |                                                                                          | right
+ 18 | Vanya Shivashankar         | scacchite       |                                                                                          | right
+ 18 | Gokul Venkatachalam        | pipsissewa      |                                                                                          | right
+ 19 | Vanya Shivashankar         | bruxellois      |                                                                                          | right
+ 19 | Gokul Venkatachalam        | pyrrhuloxia     |                                                                                          | right
+ 20 | Vanya Shivashankar         | scherenschnitte |                                                                                          | right
+ 20 | Gokul Venkatachalam        | nunatak         |                                                                                          | right
+(698 rows)
 
-COPY 564
+COPY 698
 COMMIT
