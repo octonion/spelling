@@ -6,6 +6,7 @@ count(*) as n
 from scripps.results r
 join scripps.words w on lower(w.word)=lower(r.word)
 where round_id>=2 group by w.origin
-having count(*)>=10 order by pct asc
+having count(*)>=10
+order by pct asc
 ) to '/tmp/origin_success.csv' csv header;
 
