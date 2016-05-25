@@ -9,13 +9,13 @@ agent.user_agent = 'Mozilla/5.0'
 
 bad = " "
 
-results = CSV.open("csv/scripps_competitions.csv","w")
+results = CSV.open("csv/scripps_competitions_2016.csv","w")
 
 base = "http://spellingbee.com"
 
-path = '//*[@id="copyBody"]/center/table/tr'
+path = '//*[@id="copyBody"]/table/tr'
 
-(2012..2014).each do |year|
+(2016..2016).each do |year|
 
   url = "http://spellingbee.com/public/results/#{year}/round_results"
 
