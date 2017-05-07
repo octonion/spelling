@@ -14,7 +14,7 @@ results = CSV.open("csv/scripps_results_2016.csv","w")
 
 base = "http://spellingbee.com"
 
-path = '//*[@id="copyBody"]/table//tr[position()>1]'
+path = '//*[@id="copyBody"]/table//tr' #[position()>1]'
 
 competitions.each do |c|
 
@@ -69,7 +69,9 @@ competitions.each do |c|
         row += [text]
       end
     end
-    results << row
+    if (row.size > 4)
+      results << row
+    end
   end
   results.flush
 end
