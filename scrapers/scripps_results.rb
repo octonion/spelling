@@ -9,68 +9,81 @@ agent.user_agent = 'Mozilla/5.0'
 
 bad = " "
 
-competitions = CSV.open("csv/scripps_competitions.csv","r")
-results = CSV.open("csv/scripps_results.csv","w")
+
 
 base = "http://spellingbee.com"
 
-path = '//*[@id="copyBody"]/table/tr[position()>1]'
+path = '//*[@id="copyBody"]/table//tr' #[position()>1]'
 
-competitions.each do |c|
+first_year = ARGV[0].to_i
+last_year = ARGV[1].to_i
 
-  if not(c[4]=='Spelling')
-    next
-  end
+(first_year..last_year).each do |year|
 
-  year = c[0]
-  round = c[2]
-  url = c[5]
+  competitions = CSV.open("csv/scripps_competitions_#{year}.csv","r")
+  results = CSV.open("csv/scripps_results_#{year}.csv","w")
 
-  print "#{year} - #{round}\n"
+  competitions.each do |c|
 
-  begin
-    page = agent.get(url)
-  rescue
-    print "  -> error, retrying\n"
-    retry
-  end
+    if not(c[4]=='Spelling')
+      next
+    end
 
-  page.parser.xpath(path).each_with_index do |tr,i|
-    row = [year,round]
-    tr.xpath("td").each_with_index do |td,j|
-      case j
-      when 1
-        td.xpath("a").each_with_index do |a,k|
-          href = a.attributes["href"].value.strip rescue nil
-          text = a.text.strip rescue nil
+    year = c[0]
+    round = c[2]
+    url = c[5]
+
+    print "#{year} - #{round}\n"
+
+    begin
+      page = agent.get(url)
+    rescue
+      print "  -> error, retrying\n"
+      retry
+    end
+
+    page.parser.xpath(path).each_with_index do |tr,i|
+
+      row = [year,round]
+      tr.xpath("td").each_with_index do |td,j|
+        case j
+        when 1
+          td.xpath("a").each_with_index do |a,k|
+            href = a.attributes["href"].value.strip rescue nil
+            text = a.text.strip rescue nil
+            text.gsub!(bad,"") rescue nil
+            text.gsub!("  "," ") rescue nil
+            href = base+href
+            row += [text,href]
+          end
+
+        when 3
+          td.xpath("a").each_with_index do |a,k|
+            href = a.attributes["href"].value.strip rescue nil
+            text = a.text.strip rescue nil
+            text.gsub!(bad,"") rescue nil
+            text.gsub!("  "," ") rescue nil
+            title = a.attributes["title"].value.strip rescue nil
+            row += [text,title,href]
+          end
+        else
+          text = td.text.strip rescue nil
           text.gsub!(bad,"") rescue nil
           text.gsub!("  "," ") rescue nil
-          href = base+href
-          row += [text,href]
+          if (text=="")
+            text = nil
+          end
+          row += [text]
         end
-
-      when 3
-        td.xpath("a").each_with_index do |a,k|
-          href = a.attributes["href"].value.strip rescue nil
-          text = a.text.strip rescue nil
-          text.gsub!(bad,"") rescue nil
-          text.gsub!("  "," ") rescue nil
-          title = a.attributes["title"].value.strip rescue nil
-          row += [text,title,href]
-        end
-      else
-        text = td.text.strip rescue nil
-        text.gsub!(bad,"") rescue nil
-        text.gsub!("  "," ") rescue nil
-        if (text=="")
-          text = nil
-        end
-        row += [text]
+      end
+      if (row.size > 4)
+        results << row
       end
     end
-    results << row
+    results.flush
   end
-  results.flush
-end
 
-results.close
+  results.close
+  competitions.close
+
+end

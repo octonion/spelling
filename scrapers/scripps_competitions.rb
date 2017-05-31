@@ -15,7 +15,12 @@ base = "http://spellingbee.com"
 
 path = '//*[@id="copyBody"]/table/tr'
 
-(2016..2016).each do |year|
+first_year = ARGV[0].to_i
+last_year = ARGV[1].to_i
+
+(first_year..last_year).each do |year|
+
+  results = CSV.open("csv/scripps_competitions_#{year}.csv","w")
 
   url = "http://spellingbee.com/public/results/#{year}/round_results"
 
@@ -53,7 +58,5 @@ path = '//*[@id="copyBody"]/table/tr'
       end
     end
   end
-  results.flush
+  results.close
 end
-
-results.close
