@@ -1,0 +1,1609 @@
+
+R version 3.2.3 (2015-12-10) -- "Wooden Christmas-Tree"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> #sink("diagnostics/lmer.txt")
+> 
+> library("lme4")
+> library("RPostgreSQL")
+> 
+> drv <- dbDriver("PostgreSQL")
+> 
+> con <- dbConnect(drv,dbname="spelling")
+> 
+> query <- dbSendQuery(con, "
++ select
++ r.year as year,
++ r.speller_name as speller,
++ --coalesce(s.state,'NA') as state,
++ r.round_id as round,
++ (case when r.bonus_error='E' then 0
++  else 1 end) as correct
++ from scripps.results r
++ --left join scripps.spellers s
++ --  on (s.year,s.speller_name)=
++ --     (r.year,r.speller_name)
++ where
++ r.year>=2012
++ ;")
+> 
+> words <- fetch(query,n=-1)
+> dim(words)
+[1] 3824    4
+> 
+> words$year <- as.factor(words$year)
+> words$round <- as.factor(words$round)
+> #words$state <- as.factor(words$state)
+> 
+> attach(words)
+> 
+> fp <- data.frame(year,round)
+> fpn <- names(fp)
+> 
+> rp <- data.frame(speller)
+> rpn <- names(rp)
+> 
+> model <- correct ~ year+(1|speller)+round
+> 
+> fit <- glmer(model,
++              data=words,
++ 	     family=binomial,
++ 	     verbose=TRUE,
++ 	     nAGQ=0,
++ 	     control=glmerControl(optimizer = "nloptwrap"))
+> 
+> fit
+Generalized linear mixed model fit by maximum likelihood (Adaptive
+  Gauss-Hermite Quadrature, nAGQ = 0) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ year + (1 | speller) + round
+   Data: words
+      AIC       BIC    logLik  deviance  df.resid 
+ 3063.457  3338.416 -1487.729  2975.457      3780 
+Random effects:
+ Groups  Name        Std.Dev.
+ speller (Intercept) 0.9974  
+Number of obs: 3824, groups:  speller, 1379
+Fixed Effects:
+(Intercept)     year2013     year2014     year2015     year2016     year2017  
+    2.68433      0.40643      0.23584     -0.01317     -0.67929     -0.58385  
+     round3       round4       round5       round6       round7       round8  
+   -1.17971     -2.02729     -2.16260     -2.74107     -1.92496     -2.13275  
+     round9      round10      round11      round12      round13      round14  
+   -2.51550     -2.66427     -2.69691     -2.45528     -1.52083     12.58531  
+    round15      round16      round17      round18      round19      round20  
+   -3.00941     -3.55498     12.51082     12.51082     12.51082     12.51082  
+    round21      round22      round23      round24      round25      round26  
+   12.53256     12.53256     12.58886     12.58886     12.58886     -4.00383  
+    round27      round28      round29      round30      round31      round32  
+  -20.84539     12.58886     12.58886     12.58886     12.58886     12.58886  
+    round33      round34      round35      round36      round37      round38  
+   12.58886     12.58886     12.58886     12.58886    -20.59651     12.58886  
+    round39  
+   12.58886  
+> summary(fit)
+Generalized linear mixed model fit by maximum likelihood (Adaptive
+  Gauss-Hermite Quadrature, nAGQ = 0) [glmerMod]
+ Family: binomial  ( logit )
+Formula: correct ~ year + (1 | speller) + round
+   Data: words
+Control: glmerControl(optimizer = "nloptwrap")
+
+     AIC      BIC   logLik deviance df.resid 
+  3063.5   3338.4  -1487.7   2975.5     3780 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-3.9926  0.1978  0.3215  0.4254  1.0026 
+
+Random effects:
+ Groups  Name        Variance Std.Dev.
+ speller (Intercept) 0.9948   0.9974  
+Number of obs: 3824, groups:  speller, 1379
+
+Fixed effects:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)    2.68433    0.15729  17.066  < 2e-16 ***
+year2013       0.40643    0.18889   2.152 0.031419 *  
+year2014       0.23584    0.18901   1.248 0.212124    
+year2015      -0.01317    0.18110  -0.073 0.942016    
+year2016      -0.67929    0.17270  -3.933 8.38e-05 ***
+year2017      -0.58385    0.22959  -2.543 0.010989 *  
+round3        -1.17971    0.12252  -9.628  < 2e-16 ***
+round4        -2.02729    0.26177  -7.744 9.60e-15 ***
+round5        -2.16260    0.20447 -10.576  < 2e-16 ***
+round6        -2.74107    0.22169 -12.365  < 2e-16 ***
+round7        -1.92496    0.38521  -4.997 5.82e-07 ***
+round8        -2.13275    0.40916  -5.213 1.86e-07 ***
+round9        -2.51550    0.42443  -5.927 3.09e-09 ***
+round10       -2.66427    0.47902  -5.562 2.67e-08 ***
+round11       -2.69691    0.55584  -4.852 1.22e-06 ***
+round12       -2.45528    0.68061  -3.607 0.000309 ***
+round13       -1.52083    1.06965  -1.422 0.155084    
+round14       12.58531  717.26483   0.018 0.986001    
+round15       -3.00941    0.72293  -4.163 3.14e-05 ***
+round16       -3.55498    0.77840  -4.567 4.95e-06 ***
+round17       12.51082  977.15404   0.013 0.989785    
+round18       12.51082  977.15404   0.013 0.989785    
+round19       12.51082  977.15404   0.013 0.989785    
+round20       12.51082  977.15404   0.013 0.989785    
+round21       12.53256 1195.83089   0.010 0.991638    
+round22       12.53256 1195.83089   0.010 0.991638    
+round23       12.58886 1687.54512   0.007 0.994048    
+round24       12.58886 1687.54512   0.007 0.994048    
+round25       12.58886 1687.54512   0.007 0.994048    
+round26       -4.00383    1.49590  -2.677 0.007439 ** 
+round27      -20.84539 2399.54480  -0.009 0.993069    
+round28       12.58886 1687.54512   0.007 0.994048    
+round29       12.58886 1687.54512   0.007 0.994048    
+round30       12.58886 1687.54512   0.007 0.994048    
+round31       12.58886 1687.54512   0.007 0.994048    
+round32       12.58886 1687.54512   0.007 0.994048    
+round33       12.58886 1687.54512   0.007 0.994048    
+round34       12.58886 1687.54512   0.007 0.994048    
+round35       12.58886 1687.54512   0.007 0.994048    
+round36       12.58886 1687.54512   0.007 0.994048    
+round37      -20.59651 1687.54513  -0.012 0.990262    
+round38       12.58886 1687.54512   0.007 0.994048    
+round39       12.58886 1687.54512   0.007 0.994048    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+> fixef(fit)
+ (Intercept)     year2013     year2014     year2015     year2016     year2017 
+  2.68432616   0.40643282   0.23583536  -0.01317231  -0.67928974  -0.58384869 
+      round3       round4       round5       round6       round7       round8 
+ -1.17970523  -2.02729436  -2.16260499  -2.74106884  -1.92496482  -2.13275207 
+      round9      round10      round11      round12      round13      round14 
+ -2.51550323  -2.66427445  -2.69691087  -2.45527502  -1.52083026  12.58531297 
+     round15      round16      round17      round18      round19      round20 
+ -3.00941105  -3.55497871  12.51081542  12.51081542  12.51081542  12.51081542 
+     round21      round22      round23      round24      round25      round26 
+ 12.53255743  12.53255743  12.58885818  12.58885818  12.58885818  -4.00382781 
+     round27      round28      round29      round30      round31      round32 
+-20.84539319  12.58885818  12.58885818  12.58885818  12.58885818  12.58885818 
+     round33      round34      round35      round36      round37      round38 
+ 12.58885818  12.58885818  12.58885818  12.58885818 -20.59651379  12.58885818 
+     round39 
+ 12.58885818 
+> ranef(fit)
+$speller
+                              (Intercept)
+Aahil Nishad                  0.206864004
+Aakash Narayan                0.459169448
+Aanjaneyaa Venkataraman       0.326899109
+Aarish Raza                   0.204859514
+Aarohi Srivastava             0.149844717
+Aaron Manning                 0.314886207
+Aashka Patel                  0.171348479
+Aashray Mandala              -0.451589261
+Abby Burton                  -0.425557251
+Abby Pepin                    0.149844717
+Abby Richburg                 0.099259386
+Abel Birchfield               0.149844717
+Abhilash Yarlagadda          -0.254815787
+Abhirami Jeyaseelan           0.206864004
+Abhiram Kapaganty             0.099259386
+Abigail FitzGibbon            0.171348479
+Abigail Pittman              -0.860189694
+Abigail Spitzer              -0.024170780
+Abigail Worstell             -0.425557251
+Abirami Ratnakumar            0.149844717
+Abram Goda                    0.149844717
+Adam Akan                     0.326899109
+Adam Ferrari                  0.204859514
+Adam Kastler                  0.171348479
+Adam Kleist                   0.149844717
+Adeesh Mishra                 0.204859514
+Adeline Moore                 0.326899109
+Adith Joshua George           0.099259386
+Aditi Sridhar                -0.045156386
+Aditya Badlani                0.387605254
+Aditya Chezhiyan              0.307464763
+Aditya Mishra                 0.286749235
+Aditya Nadkarni               0.206864004
+Aditya Rao                   -0.081062933
+Adom Appiah                   0.099259386
+Adrienne Fisher              -0.895207034
+Afua Ansah                    0.260263587
+Aidan Graham                  0.206864004
+Aidan Markwick                0.204859514
+Aidan Veress                  0.099259386
+Aiden Arnett                  0.099259386
+Aiden Mischley               -0.425557251
+Ainsley Boucher               0.099259386
+Aisha Khan                    0.149844717
+Aisha Randhawa                0.022762286
+AJ Christian                 -0.425557251
+Akash Vukoti                 -0.425557251
+Akilan Sankaran               0.099259386
+Akira Takabayashi             0.149844717
+Akshaj Mishra                 0.171348479
+Akshansh Ajay Kumar          -0.784451752
+Akshat Gautam                 0.326899109
+Akshra Paimagam              -0.169939784
+Alaina Kenny                  0.621908057
+Alaina McDuffie              -0.425557251
+Alan Shi                     -0.895207034
+Aleena Boby                   0.149844717
+Alekhya Ankaraju             -0.335208745
+Alen Saju                     0.204859514
+Alessandro Luis Bolus         0.171348479
+Alette Eide                  -0.045156386
+Alexander Hauer               0.171348479
+Alexander Manning             0.171348479
+Alexander Schembra           -0.686464515
+Alexandra Harper              0.460537103
+Alexandra Snyder              0.326899109
+Alexandria Ciurlino           0.099259386
+Alexandria Wilt               0.171348479
+Alex Howe                    -1.331047415
+Alexis Condon                -0.895207034
+Alexis Tang                   0.204859514
+Alex Iyer                     0.022762286
+Alex Jurich                   0.171348479
+Alia Abiad                    0.540616074
+Alia Abou Dakka              -0.784451752
+Alice Liu                     0.099259386
+Alicia Gonzalez               0.149844717
+Ali Hussain                  -0.770598272
+Allison Brower               -0.595532332
+Allison Grygar                0.171348479
+Allison Henry                 0.326899109
+Allyson Scribner             -0.595532332
+Alotus Wei                    0.423791758
+Alyssa Boynton               -0.651151740
+Alyssa Faith Dela Cruz       -0.451589261
+Alyssa Mangio                 0.326899109
+Amanda Sia                   -0.425557251
+Amber Born                    0.470998835
+Amber Robinson               -0.651151740
+Ameera Waterford             -0.045156386
+Amelia Ballingall             0.099259386
+Amelia Edelsberg              0.099259386
+Amelia Hebert                -0.651151740
+Ammaar Mohammed              -0.770598272
+Ammy Lin                     -0.209799795
+Amna Raza                     0.286749235
+Amrith Samuel                 0.326899109
+Amulya Parmar                 0.204859514
+Amy Jung                     -0.770598272
+Amy Maldonado                -0.880348908
+Ananya Vinay                 -0.320921512
+Anastasia Spahr               0.246944864
+Anchita Khurana               0.149844717
+Andie Reidy                   0.204859514
+Andrew Bowen                 -0.595532332
+Andrew Dunn                  -0.880348908
+Andrew Elias                  0.099259386
+Andrew Erdman                 0.171348479
+Andrew France                 0.363014154
+Andrew Gould                  0.508509568
+Andrew Lazenby                0.206864004
+Andrew Marino                 0.204859514
+Andrew Masciarelli           -0.784451752
+Andrew Stevens               -1.331047415
+Andy Bertodano                0.171348479
+Angela Smith                  0.149844717
+Angela Wang                   0.204859514
+Anika Gundlapalli             0.099259386
+Anika Malayappan              0.333252686
+Anika Patel                   0.171348479
+Aniket Nuthalapati            0.083602269
+Anil Singh                    0.171348479
+Anish Kumar                   0.333252686
+Ankita Vadiala                1.012322670
+Anmol Bhatia                  0.099259386
+Annabelle Day                 0.333252686
+Anna Cockfield                0.099259386
+Anna-Duyen Ngo               -0.595532332
+Anna Kleist                  -0.320921512
+Annalee Johnson               0.099259386
+Annalise Wade                -0.595532332
+Anna-Livia Regan              0.099259386
+Anna Snider                  -0.651151740
+Anna Tran                     0.286749235
+Anna Turner                   0.171348479
+Annie Schnoll                -0.686464515
+Ann Marie Brown              -0.598591680
+Ansun Sujoe                   1.144306756
+Anthony Capasso               0.149844717
+Antonio Vince Miguel Lansang  0.286749235
+Antony Joseph                -0.281159651
+Anuk Dayaprema                0.662765983
+Aparajita Rao                 0.684098108
+Apolonia Gardner             -0.281159651
+Ariana Babbitt                0.206864004
+Ariel Kokoricha               0.420151155
+Arin Bhandari                 0.099259386
+Arjun Jagjivan                0.083602269
+Aron Wiener                  -0.651151740
+Arsh Shah                     0.099259386
+Arushi Kalpande               0.112145680
+Arvind Mahankali              1.456937056
+Asa Stevens                  -0.770598272
+Asha Chauhan                  0.307464763
+Ashley Blakemore              0.206864004
+Ashraya Ananthanarayanan      0.149844717
+Ashrita Gandhari              0.099259386
+Ashrita Vadlapatla            0.359624863
+Ashtyn Folgers               -0.686464515
+Ashwin Prasad                 0.631009591
+Ashwin Sankrithi              0.206864004
+Ashwin Veeramani              0.532625695
+Asritha Sure                 -0.425557251
+Atharv Bhave                  0.206864004
+Audrey Bantug                -0.081062933
+Audrey Frische                0.206864004
+Audrey Melton                -0.880348908
+Austin Wood                  -1.331047415
+Ava Cloonan                   0.099259386
+Ava Jane Propper              0.099259386
+Avril Regis                   0.307464763
+Ayush Noori                   0.100354135
+Ayyub Abdulrezak              0.326899109
+Bassam Ahmed                  0.326899109
+Bates Bennett                 0.316580857
+Benjamin Hollis              -0.209799795
+Benjamin Kulas               -0.335208745
+Benjamin Lee                  0.326899109
+Ben Lenger                    0.099259386
+Ben Rydecki                   0.204859514
+Bernadette Miao               0.206864004
+Bethanya Yared               -0.451589261
+Bethany Doudna               -0.595532332
+Bettie Closs                  0.695824697
+Bhanu Teja Mamillapalli       0.326899109
+Bill Jerdan                   0.206864004
+Bisma Nasir                   0.204859514
+Blake Cabral                 -0.425557251
+Brady Watson                  0.326899109
+Brandi Naprava               -0.595532332
+Brandon Anderson             -0.784451752
+Brandon Aponte                0.149844717
+Brandon Kirkendall           -0.595532332
+Brayden Armes                -0.425557251
+Brayden Kelley               -0.651151740
+Brendan Pawlicki              0.099259386
+Brennon Cavanagh             -0.595532332
+Brent Earl Ebarle             0.099259386
+Bret Ramirez                  0.326899109
+Brett Tutton                  0.204859514
+Bria James                   -0.425557251
+Briana Joseph                 0.278617375
+Briandria Starks              0.099259386
+Brian Jeffers                 0.204859514
+Brianna Bartley              -0.651151740
+Brian Reinhart               -0.449347872
+Brian Werden                  0.149844717
+Bridget Byerlee               0.204859514
+Brody Dicks                   0.206864004
+Brooke Biby                   0.206864004
+Bryan Keck                   -0.460176953
+Bryce Harrell                -0.595532332
+Bryce Morales                 0.206864004
+Bryce Tasso                   0.316580857
+Buck Walling                 -0.880348908
+Buddy Noorlander             -0.651151740
+Cade Klimek                   0.206864004
+Cady Baltz                    0.206864004
+Caitlin Hillery              -0.598591680
+Caitlyn Marentette            0.206864004
+Caleb Adams                   0.206864004
+Caleb Miller                  0.063736058
+Caleb Roberts                 0.099259386
+Calvin Alexander, Jr.         0.099259386
+Calvin Liu                    0.149844717
+Camden Armstrong              0.326899109
+Cameron Apple                 0.099259386
+Cameron Haynes                0.171348479
+Cameron Keith                 0.363014154
+Camille Murphy                0.204859514
+Cara Busheme                  0.204859514
+Caribbean Adams               0.171348479
+Caroline Allen               -0.425557251
+Caroline Willett              0.204859514
+Carson Brown                 -0.595532332
+Carson Monks                 -0.239564567
+Carter Lang                   0.204859514
+Casey Donahue                -0.425557251
+Casey Ellis                   0.204859514
+Casey Hennings                0.204859514
+Casper Smith                  0.099259386
+Cassandra Clowe-Coish         0.149844717
+Cassidy Crawford              0.099259386
+Cassie Rust                  -0.425557251
+Catherine Chung               0.099259386
+Catherine Raine Esparza       0.206864004
+Cecelia Fatta                 0.307464763
+Cecilia Guerrero              0.149844717
+Cecilia Trujillo              0.149844717
+Celine Yap                    0.099259386
+Cerulean Ozarow              -0.425557251
+Chad Saunders                 0.099259386
+Chanya Holness               -0.686464515
+Charity-Dakota Jordan         0.387605254
+Charles Hamilton Jr.          0.206864004
+Charles Li                    0.392102077
+Charley Wiggins              -0.784451752
+Charlie Donahue               0.149844717
+Chase Ake                     0.326899109
+Chase Seals                   0.171348479
+Chaunté Blackwood             0.260263587
+Chetan Reddy                  0.371031456
+Chinmay Bapat                 0.099259386
+Chloe Carlson                -0.425557251
+Chloe Epps                   -0.425557251
+Chloee Robison               -0.595532332
+Chloe Johnson                 0.326899109
+Chloe LaFleur                -0.880348908
+Christal Schermeister         0.131835027
+Christian Allen               0.149844717
+Christian Kincaid             0.314886207
+Christianne Abella            0.171348479
+Christine Alex                0.120439508
+Christine Farnberg           -0.125393175
+Christine Sturgill            0.206864004
+Christopher Chang             0.206864004
+Christopher Kiekhaefer        0.099259386
+Christopher Netzel           -0.425557251
+Christopher O'Connor         -0.388009099
+Christopher Rademacher       -0.408295429
+Christopher Relyea           -0.802532246
+Christopher Serrao            0.099259386
+Christopher Shoemaker         0.149844717
+Christy Jestin                0.770302680
+Chythanya Murali              0.286749235
+Cierra Wilson                 0.099259386
+Claire Layne                  0.204859514
+Claire McCrea                 0.149844717
+Claire Thomas                -0.245336287
+Clancy Carter                 0.204859514
+Clara Wicoff                  0.204859514
+Clarisse Tudon               -0.425557251
+Clint Goodwin                -0.686464515
+Colby Reese                   0.326899109
+Coleman Swartzfager           0.204859514
+Cole Shafer-Ray               0.801887712
+Colin Francis                 0.171348479
+Colleen Reed                 -0.686464515
+Colleen Ung                  -0.595532332
+Collin Shea                  -0.784451752
+Colton Blinka                 0.149844717
+Connor Lawrence              -0.784451752
+Connor Mitchell              -0.595532332
+Connor Niederbuhl            -0.880348908
+Connor Spencer                0.171348479
+Connor Voorhees              -0.425557251
+Cooper Barth                  0.204859514
+Cooper Komatsu                1.244067796
+Coralee LaRue                -0.598591680
+Craig Storm                  -0.595532332
+Cristina Pines                0.099259386
+Cy Orentlicher                0.171838451
+Daichi Hayakawa              -0.686464515
+Dale Winand                   0.099259386
+Damien Handy                 -0.686464515
+Dana Chiueh                   0.171348479
+Daniel Chen                   0.387605254
+Daniel Chi                    0.149844717
+Daniel Doudna                 0.099259386
+Daniel Healy                  0.099259386
+Daniel Larsen                 0.099259386
+Danielle Serrao               0.326899109
+Danielle Smith                0.149844717
+Daniel Mayo                   0.149844717
+Daniel McGarvey               0.204859514
+Daniel Oster                  0.204859514
+Daniel Samraj                 0.171348479
+Daniel Taylor                -0.595532332
+Danyah Imam                   0.171348479
+Darius Bermudez              -0.855595410
+David De Coursy               0.099259386
+David Firestone              -0.784451752
+David Jones                   0.204859514
+David Khamis                 -0.880348908
+David Lye                     0.307464763
+Dean Creedon                  0.204859514
+DeAria Phoenix               -0.686464515
+Debrina Alai'a Su'a          -0.770598272
+Debrinna-Meggie Alaia Su'a   -0.595532332
+Declan Leach                  0.326899109
+Delaney Knoll                 0.206864004
+Delaney Williams              0.099259386
+Deneiro Hines                 0.099259386
+Desiree Roby                  0.149844717
+Deuce Ditton                  0.387605254
+Deven Sheth                   0.326899109
+Devesh Shah                   0.099259386
+Devina Singh                 -0.651151740
+Devin Reed                    0.204859514
+Dev Jaiswal                   0.633642192
+Dharani Kotekal              -0.024170780
+Dhruva Mehta                  0.204859514
+Dhruv Kaderu                 -0.451589261
+Dhyana Mishra                 0.326899109
+Diana Nguyen                  0.171348479
+Divya Aggarwal                0.730766896
+Divya Amirtharaj              0.286749235
+Donovan Butler                0.326899109
+Donovan Rolle                 0.149844717
+Dray Remy                     0.206864004
+Dwaritha Ramesh               0.326899109
+Dwight Moore, Jr.            -0.651151740
+Dylan Bird                    0.204859514
+Dylan Hembrough              -0.595532332
+Dylan O'Connor                0.442708196
+Dylan Olster                  0.171348479
+Dylan Reid                   -0.770598272
+Eboseremhen Eigbe            -0.239564567
+Ed Horan                      0.171348479
+Edith Fuller                  0.099259386
+Edwin Estep                   0.100354135
+Eesha Sohail                  0.185344646
+Eileen Xue                    0.171348479
+Eleanor Fournier              0.099259386
+Elias Kondolios               0.171348479
+Elijah Brewer                -0.770598272
+Elisabeth Ince                0.171348479
+Elise Stahl                   0.204859514
+Elise Weier                   0.326899109
+Elizabeth Dang                0.149844717
+Elizabeth Koh                 0.204859514
+Elizabeth Muganyizi           0.099259386
+Elizabeth Muller              0.099259386
+Elizabeth Tittrington         0.099259386
+Eliza Willett                 0.459169448
+Ella Espiritu                -0.784451752
+Ella Peters                   0.326899109
+Ella Rosenkranz               0.206864004
+Ella Scheuermann              0.326899109
+Emelie Ojukwu                 0.099259386
+Emily Alldrin                 0.206864004
+Emily Carello                 0.204859514
+Emily Garcia                 -1.217949992
+Emily Gunkel                  0.286749235
+Emily Helm                    0.171348479
+Emily Hynes                   0.171348479
+Emily Keaton                 -0.074801585
+Emily King                   -0.784451752
+Emily Ladines                 0.206864004
+Emily McGraw                 -0.598591680
+Emily Schneider               0.171348479
+Emily Sun                     0.326899109
+Emma Ciereszynski             0.383638711
+Emma Greenlee                 0.063736058
+Emma Jankowski                0.206864004
+Emma Liu                      0.099259386
+Emmanuel Rimocal              0.099259386
+Emma Parrish                 -0.895207034
+Emma Steimle                 -0.024170780
+Emma Tsou                    -0.425557251
+Emma Vorenberg                0.204859514
+Enya Hubers                   0.099259386
+Eric Errampalli               0.206864004
+Eric Gitson                   0.099259386
+Eric Kim                     -0.425557251
+Erik Dubbs                   -0.784451752
+Erik Hovland                 -0.880348908
+Erin Howard                   0.175067380
+Erin Sellers                  0.149844717
+Erin Welch                    0.307464763
+Ethan Gomulka                 0.326899109
+Ethan Greenley                0.099259386
+Ethan Perrins                 0.171348479
+Ethan Stinson                -0.595532332
+Ethan Talbot                  0.149844717
+Ethan Wagner                  0.149844717
+Ethan Wall                   -1.331047415
+Eugene Lee                    0.206864004
+Eujine Kim                    0.278617375
+Eva Kitlen                    0.063736058
+Evan Filer                    0.149844717
+Evan Haley                    0.206864004
+Evan Smith                    0.204859514
+Eva Vega                     -0.045156386
+Faaris Khan                   0.082510455
+Faith Baca                    0.099259386
+Farah Haniff                  0.099259386
+Farzan Shiju                  0.206864004
+Ferdian Aditama               0.171348479
+Folau Holi                    0.099259386
+Frank Cahill                  0.514488255
+Frank Grabowski              -0.595532332
+Gabriela Rodriguez-Garcia     0.149844717
+Gabriel Ennin                 0.387605254
+Gabriella Rodriguez          -0.895207034
+Gabrielle Brown               0.099259386
+Gabrielle Rubio               0.286749235
+Garrett Bryner                0.099259386
+Gavin Buehler                -0.186253308
+George Estep                  0.171348479
+George Triplett               0.171348479
+Gerardo Amaro                 0.206864004
+Giabao Tonthat                0.149844717
+Gia Lauren Bautista           0.333252686
+Gifton Wright                 0.660606278
+Gina Solomito                 0.251191625
+Gokul Venkatachalam           1.368477206
+Grace Johanningsmeier         0.171348479
+Grace Jones                   0.307464763
+Grace Li                      0.204859514
+Grace Maxson                  0.099259386
+Grace McKeegan                0.099259386
+Grace Park                    0.204859514
+Grace Remmer                  0.371031456
+Gracie Benton                 0.206864004
+Gracie Schroeder              0.420151155
+Grange Simpson                0.171348479
+Grant Decker                  0.459169448
+Grant Innis                   0.204859514
+Grant Loose                   0.149844717
+Grant Pace                    0.204859514
+Grant Taylor                  0.278617375
+Greer Marshall                0.171348479
+Greg Kessel                   0.204859514
+Greta Warner                 -0.595532332
+Griffin McAvoy                0.149844717
+Gurjiwan Chahal              -0.686464515
+Hadrian Reeves               -0.651151740
+Haebin Han                    0.099259386
+Haeun Moon                    0.149844717
+Hailey Hemmingsen             0.326899109
+Hailey Hogenson              -0.802532246
+Hailey Jinkins               -0.451589261
+Hailey Lancaster              0.171348479
+Haley Jeffers                 0.531910706
+Haley Payton                 -0.451589261
+Hanna Ghouse                  0.099259386
+Hannah Citsay                 0.645345666
+Hannah Faulconer              0.149844717
+Hannah Fernandes              0.099259386
+Hannah Gerlach               -0.802532246
+Hannah Jackson               -0.389926171
+Hannah Miller                 0.149844717
+Hannah Norliyn May Pengosro  -0.425557251
+Hannah Silvestro             -0.686464515
+Hannah Thomas                 0.204859514
+Haris Rana                    0.099259386
+Harmony Black                -0.770598272
+Harry Harman                 -0.335208745
+Harshita Shet                -0.010411775
+Haruka Masuda                 0.204859514
+Haven Griggs                 -0.784451752
+Hayat Alkadir                 0.171348479
+Hayden McCuan                -0.651151740
+Hayden Mildward               0.206864004
+Heehyun "Catherine" Chung    -0.045156386
+Helena Thompson               0.307464763
+Heloise Cheruvalath           0.204859514
+Henry Banta                   0.326899109
+Henry Hein                    0.326899109
+Hilary Good                  -0.595532332
+Himanvi Kopuri               -0.081062933
+Hrishikesh Srinivasan         0.149844717
+Hudson Wellin                 0.171348479
+Hunter Randolph               0.314886207
+Hunter Singletary             0.149844717
+Hussain Godhrawala            0.171348479
+Ian Jef Bongalonta            0.204859514
+Ian Shasha                    0.099259386
+Ian Wendt                     0.204859514
+Imanol Soler Navarro          0.149844717
+Ina Beinborn                 -0.895207034
+Indrani Das                   0.149844717
+Iram Kingson                  0.149844717
+Isaac McKee                   0.149844717
+Isabel Cholbi                -0.329832264
+Isabella Mayo                 0.204859514
+Isabella Neubauer             0.422347185
+Isabella Nilsson             -0.598591680
+Isabelle Scott                0.149844717
+Isabelle Simmons             -0.880348908
+Isabelle Stetka               0.099259386
+Ishaan Akula                 -0.784451752
+Ishreet Lehal                -0.784451752
+Isra Ansari                   0.149844717
+Jabaal Allen                 -1.331047415
+Jack Benveniste-Plitt         0.206864004
+Jack Maglalang               -0.598591680
+Jack Miller                  -0.132470767
+Jack Nolan                   -0.024170780
+Jack Pasche                  -1.331047415
+Jackson Hall                  0.149844717
+Jackson Parker                0.206864004
+Jacob Evers                   0.204859514
+Jacob George                  0.286749235
+Jacob Hunter                  0.204859514
+Jacob Lahti                   0.149844717
+Jacob Longmeyer               0.204859514
+Jacob McDaniel                0.171348479
+Jacob McKim                   0.326899109
+Jacob Muin                   -0.784451752
+Jacob Turner                  0.206864004
+Jacob Williams               -0.425557251
+Jacob Williamson              0.585155404
+Jade Lee                      0.149844717
+Jaden Fellows                 0.099259386
+Jaden Zhang                   0.099259386
+Jade Samanta                 -0.194406875
+Jae Canetti                  -0.153841386
+Jaffet Cruz                  -0.770598272
+Jairam Hathwar                1.723294427
+Jake Blackburn                0.099259386
+Jake Montgomery              -0.770598272
+Jamari Reeves                -0.784451752
+James Bryner                 -0.209799795
+James Sun                     0.149844717
+Jan Lomahan                  -0.595532332
+Jared Remsberg                0.149844717
+Jared Ward                    0.314886207
+Jaren Rose                   -0.595532332
+Jashun Paluru                 0.904279374
+Jasmina Frederico            -0.425557251
+Jasmine Black                 0.206864004
+Jasmine Brandt                0.149844717
+Jasmyne Le                   -0.425557251
+Jason Sorin                   0.307464763
+Javier Alicea-Santiago       -0.770598272
+Jay Shirodkar                 0.204859514
+Jee'von Pratt                 0.099259386
+Jeffery Thompson              0.206864004
+Jeffrey Cho                   0.171348479
+Jeff Zheng                    0.099259386
+Jenna King                    0.206864004
+Jenna-May Ingal               0.083602269
+Jennifer Lau                  0.099259386
+Jennifer Mong                 0.251191625
+Jennifer Tennant             -0.880348908
+Jensen Schram                 0.286749235
+Jeremy Ferguson               0.204859514
+Jeremy Lun                    0.149844717
+Jeremy Ortmann                0.206864004
+Jeremy Slywczak               0.099259386
+Jerilyn Challenger            0.206864004
+Jesse Stephenson             -0.895207034
+Jessica Aubart               -0.770598272
+Jessica Davis                 0.204859514
+Jessica Ditton                0.149844717
+Jessica Rivera               -0.784451752
+Jessie Ditton                 0.206864004
+Jessie Shaw                  -0.784451752
+Jessie Williams              -0.880348908
+Jhanvi Ravishankar            0.171348479
+Jillian Fusi                 -0.125393175
+Jiming Chen, Jr.             -0.045156386
+Jinwon Pae                    0.171348479
+Jiwon Seo                     0.204859514
+Joel Miles                   -0.286821383
+Joey Ilagan                   0.099259386
+John Ciurla                  -0.802532246
+John Fulton                  -1.331047415
+John Grifone                  0.206864004
+JoJo Widi                    -0.595532332
+Jonah Gunter                  0.314886207
+Jonathan Buckley              0.171348479
+Jonathan Caldwell            -0.081062933
+Jonathan Capuyan             -0.651151740
+Jonathon Schafer             -0.855595410
+Jordan Hoffman                0.383638711
+Joseph Batis                  0.206864004
+Joseph Benson                -0.784451752
+Joseph Cusi Delamerced        0.621908057
+Joseph Delamerced             0.567958843
+Joseph Kirkpatrick           -0.388009099
+Joseph Moran                  0.099259386
+Joseph Snelling              -0.598591680
+Josh Saylor                   0.099259386
+Joshua Kalyanapu             -0.408295429
+Joshua Kelley                 0.171348479
+Joshua Mason                  0.206864004
+Joshua Sturgill               0.149844717
+Josiah Pinkerton             -0.770598272
+Julia Fiksinski               0.204859514
+Julia McCoy                  -0.595532332
+Juliana Hunt                  0.326899109
+Julian Connaughton           -0.959382329
+Julianna Sonnik               0.171348479
+Julian Pacheco                0.204859514
+Julia Oostema                 0.206864004
+Julia Weinrod                 0.206864004
+Junah Jang                    0.206864004
+Justin Chuang                 0.204859514
+Justine Calayo                0.206864004
+Justin Hamilton               0.286749235
+Justin Malabanan             -0.425557251
+Kaelin Bunting               -0.595532332
+Kael Miranda                 -0.320921512
+Kaelyn Bender                -0.408295429
+Kaitlin Hall                  0.286749235
+Kaitlin Ryan                  0.099259386
+Kaitlin Venevongsoth         -0.686464515
+Kaitlyn O'Bryan              -0.425557251
+Kalika Bridwell               0.423791758
+Kara Lehnert                 -0.449347872
+Karelyn Malliet               0.171348479
+Karlesha Canady              -1.331047415
+Kasey Torres                  0.392102077
+Kassie McKnight              -0.595532332
+Katelyn Farmer                0.326899109
+Kate Miller                   0.428856426
+Katharine Wang                0.017711027
+Katherine Spitzer             0.326899109
+Kathy Tran                    0.326899109
+Katie Ammann                 -0.651151740
+Katie Carter                  0.204859514
+Katie Collins                 0.459169448
+Katie Danis                   0.422347185
+Katie Dudding                 0.204859514
+Katie Hudek                   0.204859514
+Katie Kirk                    0.204859514
+Katie Mills                  -0.425557251
+Katie Peterson               -0.686464515
+Katie Proffitt                0.204859514
+Katie Walstra                 0.149844717
+Katrina La Madrid             0.206864004
+Katrina Miller                0.149844717
+Kavyapranati Pratapa          0.251191625
+Kayla Corredera-Wells         0.204859514
+Kayla Sheffield               0.204859514
+Kaylee Kim                    0.535383378
+Kayleigh Guffey              -1.119340371
+Keerthana Sivathasan          0.171348479
+Keerthi Radhakrishnan         0.204859514
+Keith Mokry                   0.171348479
+Kellan All                    0.434661248
+Kellen Rodriguez             -0.651151740
+Kelly Han                     0.099259386
+Kelly Haven                  -0.784451752
+Kelly Mills                   0.099259386
+Kelvin Winney                -0.855595410
+Kendall Foster                0.206864004
+Kendal Win                    0.099259386
+Kendra Scace                 -0.651151740
+Kenneth Ross                  0.149844717
+Kennith Gonzalez              0.314886207
+Keo Pangan                    0.206864004
+Kerri Lu                      0.149844717
+Keshav Ramesh                 0.286749235
+Kevin Cui                     0.171348479
+Kevin Fan                     0.099259386
+Kevin Lazenby                -0.024170780
+Khaled Mohamed                0.149844717
+Kharyl Judith                 0.326899109
+Khushi Jeswani               -0.880348908
+Kiana Lacroix                 0.171348479
+Kieran McKinney               0.099259386
+Kimberly Belser              -0.598591680
+Kimmie Collins                0.286749235
+Kiran Malik                  -1.119340371
+Kirtan Patel                  0.149844717
+Kitty Shortt                  0.204859514
+Kodai Speich                  0.485824709
+Krishan Ghosh                 0.171348479
+Krishna Gandhi               -0.880348908
+Kristin Ratliff               0.204859514
+Kriyana Reddy                 0.204859514
+Krutik Patel                  0.099259386
+Kushala Madduru               0.206864004
+Kush Sharma                   0.171348479
+Kuvam Shahane                 0.662765983
+Kyla Truong                   0.326899109
+Kyle Ayisi                    0.171348479
+Kyle Campbell                 0.149844717
+Kyle Schroeder                0.149844717
+Kyle Skinner                 -0.770598272
+Kyoko Leaman                 -0.595532332
+Kyra Holland                 -0.045156386
+Labiba Sardar                 0.206864004
+Landon Ethredge              -0.425557251
+Landry Ballance              -1.331047415
+Lane Schnell                 -0.784451752
+Langley Vernon                0.099259386
+Larisa Tuttle                -0.045156386
+Lauren Coccari                0.149844717
+Lauren Crabtree               0.171348479
+Lauren Lim                    0.286749235
+Lauren Smith                  0.206864004
+Lauren Walker                -0.425557251
+Lauryn Pugh                   0.206864004
+Lawrence Fu                   0.099259386
+Lawrence Zhang                0.326899109
+LeeAnn Jose                   0.204859514
+Leela Waterford               0.099259386
+Lee Wall                      0.149844717
+Leila Overbeek               -0.425557251
+Lela Festa                    0.459169448
+Leland Finney                -0.598591680
+Lena Greenberg                0.660606278
+Leonardo Chen                 0.387605254
+Lerick Gordon                -1.331047415
+Letia Jones                  -0.895207034
+Lia Eggleston                -1.331047415
+Liam Lustberg                -0.651151740
+Liam Nyikos                   0.278617375
+Lillian Allingham            -0.776750768
+Lillian Bischof               0.423791758
+Lily Cassidy                  0.326899109
+Lily Mears                    0.083602269
+Lily Spalding                -0.595532332
+Lily Tugbah                  -0.784451752
+Lily Wang                     0.204859514
+Linda Kalna                   0.206864004
+Lindy Murphy                 -0.784451752
+Lipika Narisetti              0.484827770
+Lisa Lin                      0.099259386
+Lizzie Lucas                  0.326899109
+Lloyd Bonds                  -0.880348908
+Logan Bell                   -0.425557251
+Logan Gregg                  -0.425557251
+Logan Griggs                  0.326899109
+Lokesh Nagineni               0.621908057
+Lora Kuhaneck                -0.855595410
+Lori Anne Madison            -0.598591680
+Louis Aldridge                0.149844717
+Louise Julia Grimaldo         0.099259386
+Lowell Ruck                   0.149844717
+Lucas Mooney                  0.387605254
+Lucas Urbanski                0.473632922
+Luca Varanelli                0.099259386
+Lucinda Storz                -0.132470767
+Lucy Tumavicus                0.171348479
+Luke Capper                   0.326899109
+Luke Garcia                  -0.425557251
+Luke Thornburgh               0.314886207
+Luke Yap                      0.326899109
+Lwin Moe Aung                 0.171348479
+Lydia Bitterman               0.099259386
+Lydia Loverin                -0.141974481
+Lydia Pulsinelli              0.307464763
+Macey Stancato               -0.784451752
+Maddie Bowers                -0.880348908
+Madeline Hall                 0.149844717
+Madeline McCoy                0.149844717
+Madeline Rickert              0.333252686
+Madelyn Almond               -0.425557251
+Madelyn Kirsch               -1.331047415
+Madhav Chand Gampala          0.171348479
+Madison Fuentes               0.314886207
+Madison Jones                 0.149844717
+Maggie Sheridan               0.099259386
+Maggy Lambo                   0.316580857
+Magnus Keswani                0.099259386
+Maia Dykstra                 -0.651151740
+Maia Marshall                 0.099259386
+Maja Cannavo                  0.149844717
+Makayla Todman               -0.209799795
+Malie Curren                 -0.598591680
+Manasvi Reddy                 0.171348479
+Manav Thadani                 0.286749235
+Mandy Granz                   0.099259386
+Manjeet Nirula               -0.784451752
+Manu Nair                     0.834732581
+Marcus Behling                0.704931463
+Marcus Clark                  0.204859514
+Marcy Ann Ermitanio           0.204859514
+Mareike Western              -0.595532332
+Margaret Isacson              0.099259386
+Margaret Peterson             0.662765983
+Marguerite Arbogast           0.286749235
+Maria Braga-Henebry           0.204859514
+Maria Fields                 -0.425557251
+Maria Kaltchenko              0.621908057
+Mariana AlKhouri             -0.425557251
+Marie Wallie                  0.206864004
+Marilyn Santo                 0.206864004
+Marin Gray                    0.387605254
+Marisa Langley                0.307464763
+Marissa Pruitt                0.204859514
+Mark Beaulieu                -0.802532246
+Mark De Los Santos            0.251191625
+Mark Kivimaki                -0.015205837
+Marleah Knights               0.206864004
+Marlene Santora              -0.281159651
+Marlene Schaff                0.387605254
+Marshall Pentes               0.326899109
+Martius Bautista              0.508509568
+Mary Elizabeth Vaughan       -0.469583224
+Mary Horton                   0.752288743
+Mary Jo Johnson               0.206864004
+Mary Joy Li-Ann Patricio     -0.651151740
+Mary Polking                 -0.651151740
+Mary Skirvin                 -0.388009099
+Mary Wynne                    0.171348479
+Massoud Sharif                0.204859514
+Matthew Delis                 0.307464763
+Matthew Donohue              -0.388009099
+Matthew Griffin              -0.686464515
+Matthew Krupka                0.326899109
+Matthew Majerle               0.204859514
+Matthew Pitcock               0.149844717
+Matthew Prus                  0.171348479
+Matthew Rogers                0.149844717
+Matthew Ross                  0.206864004
+Matthew Zheng                 0.204859514
+Mattie Cull                   0.326899109
+Max Danner                    0.621908057
+Max Lee                       0.072782042
+Max Oesterling                0.149844717
+Maxwell Meyer                 1.003412440
+Maya Matava                  -0.770598272
+McKenna Noland               -0.802532246
+Meagan Moore                  0.206864004
+Meagan White                 -0.595532332
+Meah Wilburn                  0.149844717
+Medha Venigalla               0.171348479
+Meera Suresh                  0.206864004
+Megan Allison Pineda          0.204859514
+Megan Antoon                 -0.598591680
+Megan Lavergne                0.206864004
+Megan Rabe                    0.171348479
+Meghana Giri                  0.149844717
+Meghana Kamineni              0.684098108
+Meghna Datta                  0.206864004
+Meghna Mahadevan              0.204859514
+Meimi Teeples                 0.206864004
+Melanie Mascorro              0.099259386
+Melina Gabele                 0.770302680
+Melinda Buhlman               0.531910706
+Melodie Loya                  0.307464763
+Melody Harwood               -0.651151740
+Meryl Tigenoah                0.099259386
+Meryl Warpula                -0.449347872
+Mia Ashriem                   0.099259386
+Michael Bono                  0.204859514
+Michael Goss                 -0.613332799
+Michael James                 0.286749235
+Michael Jones                 0.171348479
+Michaella Bostrom             0.171348479
+Michael Reiner               -0.598591680
+Michael Sobol                 0.206864004
+Michael Steed                 0.206864004
+Michelle Beaulieu            -1.038712550
+Michelle Yakubek              0.083602269
+Mignon Tsai                  -0.024170780
+Mikaela Oliver               -0.895207034
+Mikayla Hall                 -0.651151740
+Miles Compani                -0.425557251
+Minh Nguyen                   0.307464763
+Minka Gill                    0.149844717
+Mira Dedhia                   0.387605254
+Mira O'Donnell               -1.331047415
+Mir Quddus                    0.326899109
+Mitchell Lange                0.204859514
+Mitchell Miya                 0.149844717
+Mitchell Robson               1.115698738
+Mitsuki Ota                   0.149844717
+Mohamed Bouftas               0.206864004
+Mollie Dugan                  0.326899109
+Mollie Symons                 0.149844717
+Molly Cahill                 -0.598591680
+Molly Youngs                 -0.895207034
+Monica "Mollie" Dugan         0.206864004
+Monisha Mahadevan            -0.254815787
+Muhammad Haris                0.206864004
+Munthira Raju                 0.206864004
+Muriel Cotman                -0.159563990
+Musa Karriem                 -0.770598272
+Mwangi Wa Maina               0.204859514
+Naama Friedman                0.171348479
+Nabeel Rahman                 0.251191625
+Nabil Ettayebi                0.326899109
+Nabil Zaman                   0.099259386
+Nafisa Asad                   0.171348479
+Nana Addo                     0.099259386
+Nandi Cook-Creek              0.149844717
+Naomi Castellanos             0.099259386
+Naomi Li                      0.204859514
+Naomi Zarin                   0.307464763
+Natalia Rosen                -0.425557251
+Natalie Cha                  -0.595532332
+Natalie Cummings              0.149844717
+Natalie Floreancig           -0.425557251
+Nathan Dugan                  0.204859514
+Nathaniel Barnes              0.099259386
+Nathaniel Britton            -0.476548834
+Nathan Jarrett               -0.425557251
+Nathan Jasper                 0.171348479
+Nathan Keenan                 0.286749235
+Nathan Manaker               -0.880348908
+Nathan Ostermann              0.099259386
+Nat Jordan                    0.204859514
+Navya Murugesan               0.171348479
+Naysa Modi                    0.508509568
+Ned Swansey                   0.204859514
+Neha Bhardwaj                 0.204859514
+Neha Konakalla                0.344452511
+Neha Middela                  0.206864004
+Neha Seshadri                 0.918759994
+Neil Brahmbhatt               0.206864004
+Neil Dave                    -0.613332799
+Neil Maes                    -0.425557251
+Neil St. John                -1.131493940
+Nejat Alkadir                 0.204859514
+Neloy Shome                  -0.598591680
+Nevaeh Lopez                  0.206864004
+Nicholas Bitar               -0.595532332
+Nicholas Gallegos             0.326899109
+Nicholas Ivan                 0.099259386
+Nicholas Lee                  0.206864004
+Nicholas Manfred             -1.038712550
+Nicholas Poulos               0.149844717
+Nicholas Rushlow              0.660606278
+Nicholas Stark               -0.880348908
+Nicholas Thompson            -0.686464515
+Nicholas Wilson               0.326899109
+Nickan Fayyazi                0.204859514
+Nick Lambert                  0.204859514
+Nickolas Day                  0.314886207
+Nick Sarji                    0.278617375
+Nick Winkelman               -0.770598272
+Nico Dinglasa                 0.326899109
+Nicola Ferguson              -0.045156386
+Nicole Frische                0.314886207
+Nicole Seman                  0.171348479
+Nihar Janga                   2.274288342
+Nikhil Dwibhashyam            0.171348479
+Nikhil Lahiri                 0.099259386
+Nikhita Pathapati             0.171348479
+Nikil Shyamsunder            -0.451589261
+Nikita Singh                  0.171348479
+Nikitha Chandran              0.180743995
+Nila Dhinaker                 0.171348479
+Nilla Rajan                   0.326899109
+Nina Fonseca                  0.326899109
+Nina McManus                  0.149844717
+Noah Brandt                   0.099259386
+Noah Cassidy                 -0.281159651
+Noah Fitzgerald               0.171348479
+Nolan Bunger                 -0.595532332
+Nolan Reed                   -0.651151740
+Olivia Archer                -1.331047415
+Olivia Blanchette            -0.425557251
+Olivia Charles               -0.320921512
+Olivia Chen                   0.206864004
+Olivia Hajicek               -0.209799795
+Olivia Havas                  0.149844717
+Olivia Jones                  0.204859514
+Olivia Kaiser                 0.171348479
+Olivia Pedigo                 0.206864004
+Olivia Simmons                0.204859514
+Olivia Weinbaum               0.149844717
+Oona Flood                    0.206864004
+Orli Weiss                    0.149844717
+Osvaldo Sanchez               0.149844717
+Owen Dudley                   0.206864004
+Owen Duffy                   -0.895207034
+Owen Kovalik                  0.076420846
+Paarth Tara                   0.099259386
+Paloma Cartwright             0.204859514
+Parker Carls                  0.204859514
+Patrick Mitchell             -0.770598272
+Patrizzia Fox-Beaudet         0.331597740
+Paul Hamrick                  0.099259386
+Pauline Negrete               0.204859514
+Paul Keaton                   0.704866116
+Pavani Chittemsetty           0.326899109
+Penda Ba                      0.099259386
+Peter Davis                   0.171348479
+Peter Khoudary               -0.425557251
+Peter Westbrook               0.099259386
+Peyton Hall                   0.171348479
+Peyton Wiewel                 0.434661248
+Philemon Awan                 0.204859514
+Philip Cummings              -1.867057983
+Phoebe Jackson                0.333252686
+Phoebe Smith                  0.099259386
+Piper Winkler                -0.388009099
+Ponvarshini Ravi              0.326899109
+Prachi Kondapuram             0.171348479
+Pranav Haran                  0.204859514
+Pranav Sivakumar              0.699611425
+Pranay Malempati              0.204859514
+Princeton Ballarino           0.204859514
+Priscilla Liow                0.204859514
+Qingyi Wang                  -0.895207034
+Rabya Hasnain                 0.326899109
+Rachael Cundey                0.137971306
+Rachel Mueller               -0.770598272
+Rachel Rowe                  -0.425557251
+Rafael Caballero              0.206864004
+Raffae Chowdhury              0.206864004
+Rahul Krishnaswamy            0.149844717
+Rahul Malayappan             -0.024170780
+Rahul Sachdev                -0.425557251
+Raimah Hossain               -0.880348908
+Raksheet Kota                 0.099259386
+Ram Koganti                   0.149844717
+Ramon Padua Jr.               0.326899109
+Raphael Kim                  -0.045156386
+Rayne Korsmo                 -0.451589261
+Razeen Basunia                0.333252686
+Reagan Leonard                0.204859514
+Rebecca Baron                 0.149844717
+Rebecca Lisk                  0.149844717
+Rebecca Liu                  -0.209799795
+Rebecca Tran                  0.171348479
+Rebekah Stanhope              0.314886207
+Rebekah Zeigler              -0.132470767
+Reena Benny                   0.204859514
+Reese Perry                   0.278617375
+Rehana Lalani                 0.206864004
+Reid FitzHugh                 0.204859514
+Rena Morrell                  0.171348479
+Reshmi Balakrishnan           0.099259386
+Rexen Venevongsoth            0.459169448
+Ria Sai                       0.307464763
+Ricardo Marrero-Alattar       0.099259386
+Richard Moraga                0.149844717
+Richelle Zampella             0.314886207
+Riju Datta                    0.171348479
+Rika Mizoguchi                0.326899109
+Riki Kaiser                   0.326899109
+Riley Hamp                   -0.320921512
+Riley Meese                  -0.784451752
+Rimas Chacar-Palubinskas     -0.045156386
+Risha Mehta                   0.171348479
+Rishi Padmanabhan             0.099259386
+Rishubh Kaushal               0.387605254
+Rita Jennings                 0.204859514
+Ritvik Jillala                0.204859514
+River Blount                  0.083602269
+Riya Joshi                    0.099259386
+Robert Bundy                 -0.770598272
+Robert Castaneros             0.326899109
+Robert Cerise                 0.149844717
+Robert Esposito              -0.770598272
+Robin Roper                   0.149844717
+Rohan Jakhete                -0.425557251
+Rohan Rajeev                  0.099259386
+Rohan Sachdev                 0.010168635
+Rohit Sahijwani               0.149844717
+Roland Patricio              -0.598591680
+Ronan Howlett                -0.186206683
+Ron Rocky Coloma              0.171348479
+Rose Han                      0.099259386
+Roshini Asirvatham           -0.281159651
+Roshni Kainthan               0.149844717
+Rosie Shultz                 -0.802532246
+Ross DeLong                   0.204859514
+Rushil Kasetty                0.171348479
+Ruth Anwasi                   0.204859514
+Rutvik Gandhasri              1.216049635
+Ryan Crawford                 0.099259386
+Ryan Devanandan               0.567958843
+Ryan Himmelsbach              0.099259386
+Ryan McLellan                -0.598591680
+Ryan Rayos                    0.278617375
+Ryan Soriano                  0.149844717
+Ryan Spencer                  0.171348479
+Ryan Staton                  -0.770598272
+Ryan Steed                    0.149844717
+Sabin Karki                   0.204859514
+Sadie McFarland               0.206864004
+Safa Michigan                -0.686464515
+Sagar Pandit                 -0.770598272
+Sahil Langote                 0.099259386
+Sahil Sangwan                -0.595532332
+Saif Siddiquee                0.326899109
+Sairah Sheikh                 0.204859514
+Sai Vishudhi Chandrasekhar    0.552232296
+Saketh Sundar                 0.387605254
+Sakif Islam                   0.149844717
+Sakiusa Meador                0.307464763
+Samantha Academia            -0.425557251
+Samantha Schofield            0.149844717
+Sam Coats                     0.171348479
+Sameera Hussain              -0.132470767
+Sam Fetters                  -0.111449652
+Samhita Kumar                 0.099259386
+Sam Lowery                    0.204859514
+Sam Nitz                      0.204859514
+Sam Pereles                   0.149844717
+Sam Stephens                  0.099259386
+Samuel Cheslik               -0.425557251
+Samuel Estep                  0.204859514
+Samuel Littrell              -0.245336287
+Samuel Paul                  -0.320921512
+Samuel Pereles                0.584658533
+Samuel Thomas                 0.099259386
+Samuel Yeager                -0.686464515
+Sanat Mishra                  0.171348479
+Sanjana Malla                 0.424966166
+Santino Panzica               0.326899109
+Sara-Beth McPherson          -0.254815787
+Sarah Campbell               -0.770598272
+Sarah Hurlin                  0.204859514
+Sarah Khoury                 -0.425557251
+Sarah Mounib                 -0.686464515
+Sarah Phillips                0.204859514
+Sarah Rye                     0.326899109
+Sarah Sedy                    0.204859514
+Sarah Spencer                -0.425557251
+Sarika Rau                    0.206864004
+Sasha Davis                  -0.449347872
+Savannah Gatts               -0.770598272
+Scott Markle                  0.149844717
+Sean Fogerty                 -0.595532332
+Sean Hickey                  -0.880348908
+Sean Ives                     0.286749235
+Sean Manuel                   0.206864004
+Sean Wang                     0.149844717
+Selena Antosh                 0.333252686
+Selena Qian                   0.149844717
+Selomi Dayaprema              0.333252686
+Seongjun Lee                 -0.880348908
+Serena Huberty                0.099259386
+Seunga Hong                  -0.451589261
+Seungtaek Oh                 -0.595532332
+Shaheer Imam                  0.441558071
+Shane DeSilva                 0.171348479
+Shannon Nulf                  0.149844717
+Shantanu Edgaonkar            0.307464763
+Sharanya Pastapur            -0.451589261
+Shashwat Patel               -0.445490491
+Shaurir Ramanujan             0.099259386
+Shayaan Subzwari              0.149844717
+Shayley Martin                0.319423313
+Sheena Chege                  0.204859514
+Sheikh Mahmud                 0.206864004
+Sheridan Hennessy             0.099259386
+Shirlyn Prabahar              0.171348479
+Shivali Halabe                0.204859514
+Shiva Yeshlur                 0.326899109
+Shiv Dewan                    0.789156180
+Shiv Lamba                   -0.254815787
+Shiv Patel                    0.171348479
+Shobha Dasari                -0.004942453
+Shourav Dasari                0.756438409
+Shreeta Vachhani              0.099259386
+Shreyas Parab                 0.286749235
+Shrinidhi Gopal               0.099259386
+Shruthika Padhy               0.022762286
+Shruti Amin                   0.204859514
+Shubhokkan Chakma             0.099259386
+Sibani Ram                    0.171348479
+Sidaarth Kumarevel           -0.770598272
+Siddhant Sharma               0.099259386
+Siddharth Krishnakumar        0.567506266
+Siddharth Kulkarni           -0.024170780
+Sierra Parker                 0.204859514
+Silas Black                   0.099259386
+Simola Nayak                  0.251191625
+Simone Kaplan                -0.451589261
+Simon Ricci                  -0.024170780
+Simran Patibanda             -0.425557251
+Sivateja Tangirala           -0.281159651
+Siyona Mishra                 0.291655640
+Smrithi Upadhyayula           1.157509345
+Snehaa Ganesh Kumar           1.652352228
+Snehalsai Ujjina              0.326899109
+Snigdha Nandipati             1.461038827
+Sofia Jenia Marquez           0.099259386
+Sohum Sukhatankar             0.307464763
+Soleil Jones                  0.149844717
+Sonia Chen                    0.149844717
+Sophia Han                    0.206864004
+Sophia Hoffman                0.459169448
+Sophia Limacher              -0.388009099
+Sophia Thompson              -0.595532332
+Sophia Whittemore             0.204859514
+Sophie Bergman                0.422347185
+Sophie Choate                 0.204859514
+Soyeon Park                   0.387605254
+Spencer Brooks                0.204859514
+Spencer Hipsher              -1.331047415
+Spencer Pogue                -1.257083155
+Sravanth Malla                0.672435982
+Sreeniketh Vogoti             1.064927470
+Srikar Chamarthi             -0.320921512
+Srinath Mahankali             0.845806842
+Srinithi Kanakam              0.206864004
+Sriram Hathwar                1.198953485
+Srivatsav Vuppala             0.099259386
+Srivinay Tummarakota          0.171348479
+Sruti Akula                  -0.024170780
+Star Han                     -0.598591680
+Stella Motl                   0.307464763
+Stephanie Garza              -0.880348908
+Stephen Hochschild            0.171348479
+Stephen Landry                0.286749235
+Stephen Ponzer               -0.595532332
+Sterling Hollond             -0.449347872
+Storrie Kulynych-Irvin        0.387605254
+Stuti Mishra                  1.013895513
+Suin Jung                    -0.595532332
+Sumaita Mulk                  0.251191625
+Sumedh Garimella              0.621908057
+Summer Hayes                  0.171348479
+Summit Kumar                  0.206864004
+Suneel Banerjee               0.171348479
+Sunny Levine                 -0.024170780
+Sunshine Wheeler              0.326899109
+Surya Dodia                   0.099259386
+Suzanna Murawski              0.171348479
+Swati Sharma                  0.149844717
+Syaal Sharifzad               0.326899109
+Syamantak Payra               0.239090837
+Sydney Aslan                  0.099259386
+Sydney Christley             -1.038712550
+Sydney DeLapp                -0.802532246
+Sylvia Nguyen                 0.099259386
+Sylvie Lamontagne             1.444660915
+Syra Gutow                    0.326899109
+Tabitha Wells                 0.204859514
+Taggart Nakamoto              0.204859514
+Taia Fagerstrom               0.204859514
+Tajaun Gibbison               0.278899510
+Tamya Matthews                0.333252686
+Tanay Nandan                  0.307464763
+Tanuja Nath                   0.326899109
+Tanvi Rakesh                  0.099259386
+Tara Ganguly                  0.326899109
+Tara Singh                    0.232271742
+Tarun Neelavannan             0.149844717
+Tauloto Tuiolemotu            0.149844717
+Taylor Roehl                  0.149844717
+Téa Freedman-Susskind         0.621908057
+Teddy Schoenfeld              0.171348479
+Ted Hamacher                 -0.880348908
+Ted Tobias                   -0.686464515
+Tejas Muthusamy               0.389596843
+Tejas Shyamsundar             0.206864004
+Thalia Nguyen                 0.326899109
+Tharein Potuhera             -0.045156386
+Theo Thompson-Armstrong       0.099259386
+Thomas Aldridge               0.204859514
+Thomas Duck                   0.206864004
+Thomas Kaufman                0.099259386
+Thomas Manning               -0.651151740
+Thomas Rubio                 -0.281159651
+Thomas York                   0.099259386
+Ti'el Lochridge              -0.595532332
+Tien Nguyen                  -0.469583224
+Timothy Lau                   0.621908057
+Timothy Yue                   0.206864004
+Tina Huang                    0.099259386
+Tiphanie Chang                0.206864004
+Tirzah Schanding              0.326899109
+Tommy Spurlin                -0.770598272
+Tom Velik                    -0.598591680
+Torah Smith                   0.099259386
+Trevor Paulsen                0.204859514
+Tricia McCullough            -0.895207034
+Trina Desquitado              0.149844717
+Trisha Balakrishnan           0.206864004
+Trishala Kumar                0.206864004
+Tristan Hankins              -0.373062249
+Tristan Salinas               0.206864004
+Tuli Bennett-Bose             0.204859514
+Tushan Dargan                 0.171348479
+Ty Korsmo                    -0.281159651
+Tyler Berndt                  0.278617375
+Uma Kasichainula              0.206864004
+Una VanWynsberghe            -0.320921512
+Urna Chakrabarty              0.204859514
+Vaidya Govindarajan           0.251191625
+Vaishnavi Suren               0.704931463
+Valery Nguyen-Au              0.204859514
+Vanessa Jodlowski             0.171348479
+Vanya Shivashankar            1.489968696
+Vanya Virmani                -0.320921512
+Varad Mulay                   0.307464763
+Varun Kukkillaya              0.333252686
+Vasundara Govindarajan        0.175067380
+Vedantanshu Kar               0.204859514
+Ved Patel                    -0.425557251
+Venkatesh Sivaraman           0.204859514
+Veronica Chua                 0.149844717
+Veronica Goveas               0.326899109
+Veto Lopez                   -1.331047415
+Victoria Allen                0.286749235
+Victoria Epstein              0.314886207
+Victoria Phillips            -0.651151740
+Victoria Whited               0.204859514
+Victor Sutton                -0.254815787
+Victor Xiao                   0.171348479
+Vince Burton                  0.099259386
+Vince Hoppel                 -0.595532332
+Vincente Quach                0.149844717
+Vipanchi Mungara              0.326899109
+Vishal Thakwani               0.206864004
+Visha Parmar                  0.204859514
+Vishnu Nistala               -0.024170780
+Vismaya Kharkar               0.607565547
+Vithul Ravivarma              0.307464763
+Vivek Kolli                   0.326899109
+Vivian Miller                 0.171348479
+Walter Fa'apouli              0.171348479
+Whitney Jameson               0.204859514
+William Cho                   0.326899109
+William Cooper                0.326899109
+William Elder                 0.171348479
+William "Liam" Myers         -0.784451752
+William Rogers               -0.595532332
+William Yaeger                0.083602269
+Will Lourcey                  0.099259386
+Will McCollom                 0.326899109
+Will Rooke                    0.099259386
+Winston Zuo                   0.099259386
+Xi Yuan Wang                  0.171348479
+Xoelis Acosta-Espada         -0.425557251
+Xuan Tran                     0.099259386
+Yad Bass                     -0.598591680
+Yash Hande                    0.099259386
+Yashna Nainani                0.149844717
+Yasir Hasnain                 0.764834329
+Yusra Hashmi                  0.204859514
+Zachary Doiron               -0.598591680
+Zachary Hoelscher            -0.784451752
+Zachary Hunsaker              0.326899109
+Zachary Jacobs                0.204859514
+Zachary Mallol                0.434661248
+Zach Swyers                   0.099259386
+Zander Patent                -0.237594540
+Zander Reed                  -0.855507351
+Zander Worm                  -0.209799795
+Zerin Wetzel                 -0.895207034
+Zhongtian Wang                0.204859514
+Zoe Ward                      0.099259386
+Z'Qi Chapman                 -0.784451752
+
+> 
+> # Fixed factors
+> 
+> f <- fixef(fit)
+> fn <- names(f)
+> 
+> # Random factors
+> 
+> r <- ranef(fit)
+> rn <- names(r) 
+> 
+> results <- list()
+> 
+> for (n in fn) {
++ 
++   df <- f[[n]]
++ 
++   factor <- n
++   level <- n
++   type <- "fixed"
++   estimate <- df
++ 
++   results <- c(results,list(data.frame(factor,type,level,estimate)))
++ 
++  }
+> 
+> for (n in rn) {
++ 
++   df <- r[[n]]
++ 
++   factor <- rep(n,nrow(df))
++   type <- rep("random",nrow(df))
++   level <- row.names(df)
++   estimate <- df[,1]
++ 
++   results <- c(results,list(data.frame(factor,type,level,estimate)))
++ 
++  }
+> 
+> combined <- as.data.frame(do.call("rbind",results))
+> 
+> write.csv(combined, file = "foo.csv")
+> 
+> quit("no")
