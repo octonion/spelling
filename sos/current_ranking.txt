@@ -1,295 +1,295 @@
-         speller         |       rating        
--------------------------+---------------------
- Sreeniketh Vogoti       |    1.30171009167485
- Naysa Modi              |    1.12623518264819
- Shourav Dasari          |    1.10805786356405
- Mira Dedhia             |    1.08066631735318
- Saketh Sundar           |    1.08066631735318
- Shrinidhi Gopal         |   0.985346142317504
- Raksheet Kota           |   0.985346142317504
- Rohan Rajeev            |   0.985346142317504
- Alice Liu               |   0.985346142317504
- Rutvik Gandhasri        |   0.871549785758055
- Jashun Paluru           |   0.871261329178686
- Erin Howard             |   0.742631113453267
- Alex Iyer               |   0.742631113453267
- Shruthika Padhy         |   0.742631113453267
- Tejas Muthusamy         |   0.701026812662281
- Sravanth Malla          |   0.672788911254871
- Rohan Sachdev           |   0.672566152010617
- Ananya Vinay            |   0.624404825446452
- Martius Bautista        |   0.589070042890452
- Andrew Gould            |   0.589070042890452
- Ashwin Prasad           |   0.589070042890452
- Kodai Speich            |   0.569956921415292
- Thomas York             |    0.49752006558869
- Soyeon Park             |   0.489512302101255
- Melinda Buhlman         |   0.489512302101255
- Lucas Mooney            |   0.489512302101255
- Aditya Badlani          |   0.489512302101255
- Leonardo Chen           |   0.489512302101255
- Storrie Kulynych-Irvin  |   0.489512302101255
- Haley Jeffers           |   0.489512302101255
- Rishubh Kaushal         |   0.489512302101255
- Charles Li              |   0.488259120021812
- Tyler Berndt            |   0.397255624506595
- Nick Sarji              |   0.397255624506595
- Reese Perry             |   0.397255624506595
- Briana Joseph           |   0.397255624506595
- Eujine Kim              |   0.397255624506595
- Shaheer Imam            |   0.397137971916291
- Anastasia Spahr         |   0.372068425315835
- Helena Thompson         |   0.369265737699542
- Samhita Kumar           |   0.369265737699542
- Melodie Loya            |   0.369265737699542
- Nicholas Ivan           |   0.369265737699542
- Tara Singh              |   0.368093094109714
- Marlene Schaff          |    0.29633220813042
- Daniel Chen             |    0.29633220813042
- Kelly Mills             |   0.260508311160008
- Abby Richburg           |   0.260508311160008
- Abhiram Kapaganty       |   0.260508311160008
- Aditya Chezhiyan        |   0.260508311160008
- Adom Appiah             |   0.260508311160008
- Aidan Veress            |   0.260508311160008
- Ainsley Boucher         |   0.260508311160008
- Alexandria Ciurlino     |   0.260508311160008
- Anika Gundlapalli       |   0.260508311160008
- Anmol Bhatia            |   0.260508311160008
- Anna Cockfield          |   0.260508311160008
- Annalee Johnson         |   0.260508311160008
- Anna-Livia Regan        |   0.260508311160008
- Arin Bhandari           |   0.260508311160008
- Arsh Shah               |   0.260508311160008
- Asha Chauhan            |   0.260508311160008
- Ava Jane Propper        |   0.260508311160008
- Avril Regis             |   0.260508311160008
- Ben Lenger              |   0.260508311160008
- Briandria Starks        |   0.260508311160008
- Calvin Alexander, Jr.   |   0.260508311160008
- Cecelia Fatta           |   0.260508311160008
- Celine Yap              |   0.260508311160008
- Chad Saunders           |   0.260508311160008
- Chinmay Bapat           |   0.260508311160008
- Christopher Serrao      |   0.260508311160008
- Cierra Wilson           |   0.260508311160008
- Cristina Pines          |   0.260508311160008
- Dale Winand             |   0.260508311160008
- Daniel Doudna           |   0.260508311160008
- Daniel Larsen           |   0.260508311160008
- David De Coursy         |   0.260508311160008
- David Lye               |   0.260508311160008
- Deneiro Hines           |   0.260508311160008
- Devesh Shah             |   0.260508311160008
- Edith Fuller            |   0.260508311160008
- Eleanor Fournier        |   0.260508311160008
- Elizabeth Muganyizi     |   0.260508311160008
- Elizabeth Muller        |   0.260508311160008
- Emelie Ojukwu           |   0.260508311160008
- Emma Liu                |   0.260508311160008
- Eric Gitson             |   0.260508311160008
- Erin Welch              |   0.260508311160008
- Farah Haniff            |   0.260508311160008
- Folau Holi              |   0.260508311160008
- Gabrielle Brown         |   0.260508311160008
- Garrett Bryner          |   0.260508311160008
- Grace Jones             |   0.260508311160008
- Grace Maxson            |   0.260508311160008
- Grace McKeegan          |   0.260508311160008
- Ian Shasha              |   0.260508311160008
- Isabelle Stetka         |   0.260508311160008
- Jason Sorin             |   0.260508311160008
- Jeff Zheng              |   0.260508311160008
- Jennifer Lau            |   0.260508311160008
- Joey Ilagan             |   0.260508311160008
- Joseph Moran            |   0.260508311160008
- Kendal Win              |   0.260508311160008
- Kevin Fan               |   0.260508311160008
- Kieran McKinney         |   0.260508311160008
- Lawrence Fu             |   0.260508311160008
- Leela Waterford         |   0.260508311160008
- Lisa Lin                |   0.260508311160008
- Louise Julia Grimaldo   |   0.260508311160008
- Luca Varanelli          |   0.260508311160008
- Lydia Bitterman         |   0.260508311160008
- Lydia Pulsinelli        |   0.260508311160008
- Magnus Keswani          |   0.260508311160008
- Maia Marshall           |   0.260508311160008
- Mandy Granz             |   0.260508311160008
- Margaret Isacson        |   0.260508311160008
- Marisa Langley          |   0.260508311160008
- Matthew Delis           |   0.260508311160008
- Meryl Tigenoah          |   0.260508311160008
- Mia Ashriem             |   0.260508311160008
- Minh Nguyen             |   0.260508311160008
- Nabil Zaman             |   0.260508311160008
- Nana Addo               |   0.260508311160008
- Naomi Zarin             |   0.260508311160008
- Nathaniel Barnes        |   0.260508311160008
- Noah Brandt             |   0.260508311160008
- Paarth Tara             |   0.260508311160008
- Penda Ba                |   0.260508311160008
- Peter Westbrook         |   0.260508311160008
- Reshmi Balakrishnan     |   0.260508311160008
- Ria Sai                 |   0.260508311160008
- Ricardo Marrero-Alattar |   0.260508311160008
- Rose Han                |   0.260508311160008
- Ryan Crawford           |   0.260508311160008
- Ryan Himmelsbach        |   0.260508311160008
- Sahil Langote           |   0.260508311160008
- Sakiusa Meador          |   0.260508311160008
- Sam Stephens            |   0.260508311160008
- Samuel Thomas           |   0.260508311160008
- Serena Huberty          |   0.260508311160008
- Shantanu Edgaonkar      |   0.260508311160008
- Shaurir Ramanujan       |   0.260508311160008
- Sheridan Hennessy       |   0.260508311160008
- Shreeta Vachhani        |   0.260508311160008
- Shubhokkan Chakma       |   0.260508311160008
- Silas Black             |   0.260508311160008
- Sofia Jenia Marquez     |   0.260508311160008
- Srivatsav Vuppala       |   0.260508311160008
- Stella Motl             |   0.260508311160008
- Surya Dodia             |   0.260508311160008
- Tanay Nandan            |   0.260508311160008
- Tina Huang              |   0.260508311160008
- Vince Burton            |   0.260508311160008
- Vithul Ravivarma        |   0.260508311160008
- Will Lourcey            |   0.260508311160008
- Will Rooke              |   0.260508311160008
- Winston Zuo             |   0.260508311160008
- Xuan Tran               |   0.260508311160008
- Yash Hande              |   0.260508311160008
- Zach Swyers             |   0.260508311160008
- Siyona Mishra           |   0.208246425428074
- Harshita Shet           |   0.125433132384897
- Vasundara Govindarajan  |   0.121851713309454
- Maggie Sheridan         |   0.101195696232275
- Enya Hubers             |   0.101195696232275
- Sohum Sukhatankar       |   0.101195696232275
- Varad Mulay             |   0.101195696232275
- Nikhil Lahiri           |   0.101195696232275
- Catherine Chung         |   0.101195696232275
- Owen Kovalik            |  0.0540492692402395
- Lucinda Storz           |  0.0273237783149009
- Jack Miller             |  0.0273237783149009
- Sameera Hussain         |  0.0273237783149009
- Grant Taylor            | -0.0118813944707664
- Akshra Paimagam         | -0.0809074227758168
- Kasey Torres            |  -0.102116323344418
- Joel Miles              |  -0.102116323344418
- Sam Fetters             |  -0.118105422307903
- Samuel Paul             |  -0.118105422307903
- Charity-Dakota Jordan   |  -0.118105422307903
- Deuce Ditton            |  -0.118105422307903
- Riley Hamp              |  -0.118105422307903
- Gabriel Ennin           |  -0.118105422307903
- Marin Gray              |  -0.118105422307903
- Una VanWynsberghe       |  -0.118105422307903
- Srikar Chamarthi        |  -0.166936065281578
- Ashrita Gandhari        |  -0.170325793746641
- Paul Hamrick            |  -0.170325793746641
- Brendan Pawlicki        |  -0.170325793746641
- Aisha Randhawa          |   -0.17855678152732
- Ryan Rayos              |  -0.238922483896913
- Liam Nyikos             |  -0.238922483896913
- Mary Elizabeth Vaughan  |  -0.238922483896913
- Olivia Charles          |  -0.297641153233663
- Neil Dave               |  -0.340142333476346
- Michael Goss            |  -0.340142333476346
- Cassidy Crawford        |  -0.456174958490102
- Sharanya Pastapur       |  -0.456174958490102
- Torah Smith             |  -0.456174958490102
- Andrew Elias            |  -0.456174958490102
- Adith Joshua George     |  -0.456174958490102
- Amelia Edelsberg        |  -0.456174958490102
- Amelia Ballingall       |  -0.456174958490102
- Christopher Kiekhaefer  |  -0.456174958490102
- Siddhant Sharma         |  -0.456174958490102
- Melanie Mascorro        |  -0.456174958490102
- Simone Kaplan           |  -0.456174958490102
- Naomi Castellanos       |  -0.456174958490102
- Alyssa Faith Dela Cruz  |  -0.456174958490102
- Nathan Ostermann        |  -0.456174958490102
- Casper Smith            |  -0.456174958490102
- Cameron Apple           |  -0.456174958490102
- Nikil Shyamsunder       |  -0.456174958490102
- Zoe Ward                |  -0.456174958490102
- Phoebe Smith            |  -0.456174958490102
- Caleb Roberts           |  -0.456174958490102
- Rayne Korsmo            |  -0.456174958490102
- Brent Earl Ebarle       |  -0.456174958490102
- Sydney Aslan            |  -0.456174958490102
- Emmanuel Rimocal        |  -0.456174958490102
- Rishi Padmanabhan       |  -0.456174958490102
- Ethan Greenley          |  -0.456174958490102
- Elizabeth Tittrington   |  -0.456174958490102
- Faith Baca              |  -0.456174958490102
- Riya Joshi              |  -0.456174958490102
- Bethanya Yared          |  -0.456174958490102
- Sylvia Nguyen           |  -0.456174958490102
- Ava Cloonan             |  -0.456174958490102
- Tanvi Rakesh            |  -0.456174958490102
- Haebin Han              |  -0.456174958490102
- Hailey Jinkins          |  -0.456174958490102
- Dhruv Kaderu            |  -0.456174958490102
- Haley Payton            |  -0.456174958490102
- Hanna Ghouse            |  -0.456174958490102
- Hannah Fernandes        |  -0.456174958490102
- Haris Rana              |  -0.456174958490102
- Akilan Sankaran         |  -0.456174958490102
- Jaden Fellows           |  -0.456174958490102
- Jaden Zhang             |  -0.456174958490102
- Jake Blackburn          |  -0.456174958490102
- Delaney Williams        |  -0.456174958490102
- Jee'von Pratt           |  -0.456174958490102
- Jeremy Slywczak         |  -0.456174958490102
- Josh Saylor             |  -0.456174958490102
- Kaitlin Ryan            |  -0.456174958490102
- Kelly Han               |  -0.456174958490102
- Aashray Mandala         |  -0.456174958490102
- Theo Thompson-Armstrong |  -0.456174958490102
- Thomas Kaufman          |  -0.456174958490102
- Krutik Patel            |  -0.456174958490102
- Langley Vernon          |  -0.456174958490102
- Aiden Arnett            |  -0.456174958490102
- Seunga Hong             |  -0.456174958490102
- Daniel Healy            |  -0.456174958490102
- Rebekah Zeigler         |  -0.466468168427768
- Vanya Virmani           |  -0.665459333593433
- Anna Kleist             |  -0.665459333593433
- Kael Miranda            |  -0.665459333593433
- Erik Dubbs              |  -0.741851105012199
- Alia Abou Dakka         |  -0.741851105012199
- David Firestone         |  -0.741851105012199
- Brandon Anderson        |  -0.741851105012199
- Riley Meese             |  -0.741851105012199
- Jessica Rivera          |  -0.741851105012199
- Jessie Shaw             |  -0.741851105012199
- Charley Wiggins         |  -0.741851105012199
- William "Liam" Myers    |  -0.741851105012199
- Collin Shea             |  -0.741851105012199
- Emily King              |  -0.741851105012199
- Joseph Benson           |  -0.741851105012199
- Z'Qi Chapman            |  -0.741851105012199
- Andrew Masciarelli      |  -0.741851105012199
- Macey Stancato          |  -0.741851105012199
- Connor Lawrence         |  -0.741851105012199
- Ella Espiritu           |  -0.741851105012199
- Kelly Haven             |  -0.741851105012199
- Lindy Murphy            |  -0.741851105012199
- Jamari Reeves           |  -0.741851105012199
- Lane Schnell            |  -0.741851105012199
- Manjeet Nirula          |  -0.741851105012199
- Zachary Hoelscher       |  -0.741851105012199
- Haven Griggs            |  -0.741851105012199
- Akshansh Ajay Kumar     |  -0.741851105012199
- Lily Tugbah             |  -0.741851105012199
- Ishaan Akula            |  -0.741851105012199
- Ishreet Lehal           |  -0.741851105012199
- Jacob Muin              |  -0.741851105012199
- Tien Nguyen             |  -0.806712524056237
- Julian Connaughton      |  -0.904240083176859
- Neil St. John           |   -1.07405219111269
+         speller         | year | n | rating 
+-------------------------+------+---+--------
+ Tejas Muthusamy         | 2017 | 4 |  2.205
+ Sreeniketh Vogoti       | 2017 | 2 |  2.149
+ Shourav Dasari          | 2017 | 2 |  1.882
+ Rutvik Gandhasri        | 2017 | 2 |  1.826
+ Naysa Modi              | 2017 | 3 |  1.733
+ Saketh Sundar           | 2017 | 2 |  1.696
+ Mira Dedhia             | 2017 | 2 |  1.696
+ Jashun Paluru           | 2017 | 2 |  1.682
+ Harshita Shet           | 2017 | 4 |  1.649
+ Tara Singh              | 2017 | 4 |  1.642
+ Erin Howard             | 2017 | 2 |  1.399
+ Alex Iyer               | 2017 | 2 |  1.399
+ Shruthika Padhy         | 2017 | 2 |  1.399
+ Rohan Sachdev           | 2017 | 2 |  1.315
+ Sravanth Malla          | 2017 | 3 |  1.266
+ Andrew Gould            | 2017 | 3 |  1.243
+ Ashwin Prasad           | 2017 | 3 |  1.243
+ Martius Bautista        | 2017 | 3 |  1.243
+ Ananya Vinay            | 2017 | 2 |  1.239
+ Kodai Speich            | 2017 | 3 |  1.224
+ Lucas Mooney            | 2017 | 2 |  1.179
+ Haley Jeffers           | 2017 | 2 |  1.179
+ Rishubh Kaushal         | 2017 | 2 |  1.179
+ Soyeon Park             | 2017 | 2 |  1.179
+ Aditya Badlani          | 2017 | 2 |  1.179
+ Storrie Kulynych-Irvin  | 2017 | 2 |  1.179
+ Leonardo Chen           | 2017 | 2 |  1.179
+ Melinda Buhlman         | 2017 | 2 |  1.179
+ Charles Li              | 2017 | 3 |  1.165
+ Rohan Rajeev            | 2017 | 1 |  1.144
+ Alice Liu               | 2017 | 1 |  1.144
+ Shrinidhi Gopal         | 2017 | 1 |  1.144
+ Raksheet Kota           | 2017 | 1 |  1.144
+ Shaheer Imam            | 2017 | 2 |  1.078
+ Reese Perry             | 2017 | 2 |  1.071
+ Nick Sarji              | 2017 | 2 |  1.071
+ Eujine Kim              | 2017 | 2 |  1.071
+ Briana Joseph           | 2017 | 2 |  1.071
+ Tyler Berndt            | 2017 | 2 |  1.071
+ Anastasia Spahr         | 2017 | 2 |  1.049
+ Siyona Mishra           | 2017 | 2 |  0.963
+ Marlene Schaff          | 2017 | 2 |  0.933
+ Daniel Chen             | 2017 | 2 |  0.933
+ Vasundara Govindarajan  | 2017 | 2 |  0.866
+ Owen Kovalik            | 2017 | 3 |  0.728
+ Thomas York             | 2017 | 1 |  0.688
+ Jack Miller             | 2017 | 3 |  0.665
+ Sameera Hussain         | 2017 | 3 |  0.665
+ Lucinda Storz           | 2017 | 3 |  0.665
+ Grant Taylor            | 2017 | 2 |  0.631
+ Akshra Paimagam         | 2017 | 2 |  0.590
+ Marin Gray              | 2017 | 2 |  0.575
+ Sam Fetters             | 2017 | 2 |  0.575
+ Gabriel Ennin           | 2017 | 2 |  0.575
+ Samuel Paul             | 2017 | 2 |  0.575
+ Charity-Dakota Jordan   | 2017 | 2 |  0.575
+ Una VanWynsberghe       | 2017 | 2 |  0.575
+ Deuce Ditton            | 2017 | 2 |  0.575
+ Riley Hamp              | 2017 | 2 |  0.575
+ Joel Miles              | 2017 | 3 |  0.558
+ Kasey Torres            | 2017 | 3 |  0.558
+ Samhita Kumar           | 2017 | 1 |  0.532
+ Melodie Loya            | 2017 | 1 |  0.532
+ Nicholas Ivan           | 2017 | 1 |  0.532
+ Helena Thompson         | 2017 | 1 |  0.532
+ Aisha Randhawa          | 2017 | 2 |  0.529
+ Srikar Chamarthi        | 2017 | 2 |  0.469
+ Olivia Charles          | 2017 | 2 |  0.456
+ Mary Elizabeth Vaughan  | 2017 | 2 |  0.437
+ Ryan Rayos              | 2017 | 2 |  0.437
+ Liam Nyikos             | 2017 | 2 |  0.437
+ Michael Goss            | 2017 | 2 |  0.325
+ Neil Dave               | 2017 | 2 |  0.325
+ Kelly Mills             | 2017 | 1 |  0.283
+ Abby Richburg           | 2017 | 1 |  0.283
+ Abhiram Kapaganty       | 2017 | 1 |  0.283
+ Aditya Chezhiyan        | 2017 | 1 |  0.283
+ Adom Appiah             | 2017 | 1 |  0.283
+ Aidan Veress            | 2017 | 1 |  0.283
+ Ainsley Boucher         | 2017 | 1 |  0.283
+ Alexandria Ciurlino     | 2017 | 1 |  0.283
+ Anika Gundlapalli       | 2017 | 1 |  0.283
+ Anmol Bhatia            | 2017 | 1 |  0.283
+ Anna Cockfield          | 2017 | 1 |  0.283
+ Annalee Johnson         | 2017 | 1 |  0.283
+ Anna-Livia Regan        | 2017 | 1 |  0.283
+ Arin Bhandari           | 2017 | 1 |  0.283
+ Arsh Shah               | 2017 | 1 |  0.283
+ Asha Chauhan            | 2017 | 1 |  0.283
+ Ava Jane Propper        | 2017 | 1 |  0.283
+ Avril Regis             | 2017 | 1 |  0.283
+ Ben Lenger              | 2017 | 1 |  0.283
+ Briandria Starks        | 2017 | 1 |  0.283
+ Calvin Alexander, Jr.   | 2017 | 1 |  0.283
+ Cecelia Fatta           | 2017 | 1 |  0.283
+ Celine Yap              | 2017 | 1 |  0.283
+ Chad Saunders           | 2017 | 1 |  0.283
+ Chinmay Bapat           | 2017 | 1 |  0.283
+ Christopher Serrao      | 2017 | 1 |  0.283
+ Cierra Wilson           | 2017 | 1 |  0.283
+ Cristina Pines          | 2017 | 1 |  0.283
+ Dale Winand             | 2017 | 1 |  0.283
+ Daniel Doudna           | 2017 | 1 |  0.283
+ Daniel Larsen           | 2017 | 1 |  0.283
+ David De Coursy         | 2017 | 1 |  0.283
+ David Lye               | 2017 | 1 |  0.283
+ Deneiro Hines           | 2017 | 1 |  0.283
+ Devesh Shah             | 2017 | 1 |  0.283
+ Edith Fuller            | 2017 | 1 |  0.283
+ Eleanor Fournier        | 2017 | 1 |  0.283
+ Elizabeth Muganyizi     | 2017 | 1 |  0.283
+ Elizabeth Muller        | 2017 | 1 |  0.283
+ Emelie Ojukwu           | 2017 | 1 |  0.283
+ Emma Liu                | 2017 | 1 |  0.283
+ Eric Gitson             | 2017 | 1 |  0.283
+ Erin Welch              | 2017 | 1 |  0.283
+ Farah Haniff            | 2017 | 1 |  0.283
+ Folau Holi              | 2017 | 1 |  0.283
+ Gabrielle Brown         | 2017 | 1 |  0.283
+ Garrett Bryner          | 2017 | 1 |  0.283
+ Grace Jones             | 2017 | 1 |  0.283
+ Grace Maxson            | 2017 | 1 |  0.283
+ Grace McKeegan          | 2017 | 1 |  0.283
+ Ian Shasha              | 2017 | 1 |  0.283
+ Isabelle Stetka         | 2017 | 1 |  0.283
+ Jason Sorin             | 2017 | 1 |  0.283
+ Jeff Zheng              | 2017 | 1 |  0.283
+ Jennifer Lau            | 2017 | 1 |  0.283
+ Joey Ilagan             | 2017 | 1 |  0.283
+ Joseph Moran            | 2017 | 1 |  0.283
+ Kendal Win              | 2017 | 1 |  0.283
+ Kevin Fan               | 2017 | 1 |  0.283
+ Kieran McKinney         | 2017 | 1 |  0.283
+ Lawrence Fu             | 2017 | 1 |  0.283
+ Leela Waterford         | 2017 | 1 |  0.283
+ Lisa Lin                | 2017 | 1 |  0.283
+ Louise Julia Grimaldo   | 2017 | 1 |  0.283
+ Luca Varanelli          | 2017 | 1 |  0.283
+ Lydia Bitterman         | 2017 | 1 |  0.283
+ Lydia Pulsinelli        | 2017 | 1 |  0.283
+ Magnus Keswani          | 2017 | 1 |  0.283
+ Maia Marshall           | 2017 | 1 |  0.283
+ Mandy Granz             | 2017 | 1 |  0.283
+ Margaret Isacson        | 2017 | 1 |  0.283
+ Marisa Langley          | 2017 | 1 |  0.283
+ Matthew Delis           | 2017 | 1 |  0.283
+ Meryl Tigenoah          | 2017 | 1 |  0.283
+ Mia Ashriem             | 2017 | 1 |  0.283
+ Minh Nguyen             | 2017 | 1 |  0.283
+ Nabil Zaman             | 2017 | 1 |  0.283
+ Nana Addo               | 2017 | 1 |  0.283
+ Naomi Zarin             | 2017 | 1 |  0.283
+ Nathaniel Barnes        | 2017 | 1 |  0.283
+ Noah Brandt             | 2017 | 1 |  0.283
+ Paarth Tara             | 2017 | 1 |  0.283
+ Penda Ba                | 2017 | 1 |  0.283
+ Peter Westbrook         | 2017 | 1 |  0.283
+ Reshmi Balakrishnan     | 2017 | 1 |  0.283
+ Ria Sai                 | 2017 | 1 |  0.283
+ Ricardo Marrero-Alattar | 2017 | 1 |  0.283
+ Rose Han                | 2017 | 1 |  0.283
+ Ryan Crawford           | 2017 | 1 |  0.283
+ Ryan Himmelsbach        | 2017 | 1 |  0.283
+ Sahil Langote           | 2017 | 1 |  0.283
+ Sakiusa Meador          | 2017 | 1 |  0.283
+ Sam Stephens            | 2017 | 1 |  0.283
+ Samuel Thomas           | 2017 | 1 |  0.283
+ Serena Huberty          | 2017 | 1 |  0.283
+ Shantanu Edgaonkar      | 2017 | 1 |  0.283
+ Shaurir Ramanujan       | 2017 | 1 |  0.283
+ Sheridan Hennessy       | 2017 | 1 |  0.283
+ Shreeta Vachhani        | 2017 | 1 |  0.283
+ Shubhokkan Chakma       | 2017 | 1 |  0.283
+ Silas Black             | 2017 | 1 |  0.283
+ Sofia Jenia Marquez     | 2017 | 1 |  0.283
+ Srivatsav Vuppala       | 2017 | 1 |  0.283
+ Stella Motl             | 2017 | 1 |  0.283
+ Surya Dodia             | 2017 | 1 |  0.283
+ Tanay Nandan            | 2017 | 1 |  0.283
+ Tina Huang              | 2017 | 1 |  0.283
+ Vince Burton            | 2017 | 1 |  0.283
+ Vithul Ravivarma        | 2017 | 1 |  0.283
+ Will Lourcey            | 2017 | 1 |  0.283
+ Will Rooke              | 2017 | 1 |  0.283
+ Winston Zuo             | 2017 | 1 |  0.283
+ Xuan Tran               | 2017 | 1 |  0.283
+ Yash Hande              | 2017 | 1 |  0.283
+ Zach Swyers             | 2017 | 1 |  0.283
+ Nikhil Lahiri           | 2017 | 1 |  0.233
+ Sohum Sukhatankar       | 2017 | 1 |  0.233
+ Varad Mulay             | 2017 | 1 |  0.233
+ Maggie Sheridan         | 2017 | 1 |  0.233
+ Catherine Chung         | 2017 | 1 |  0.233
+ Enya Hubers             | 2017 | 1 |  0.233
+ Rebekah Zeigler         | 2017 | 3 |  0.158
+ Vanya Virmani           | 2017 | 2 |  0.026
+ Kael Miranda            | 2017 | 2 |  0.026
+ Anna Kleist             | 2017 | 2 |  0.026
+ Ashrita Gandhari        | 2017 | 1 | -0.073
+ Paul Hamrick            | 2017 | 1 | -0.073
+ Brendan Pawlicki        | 2017 | 1 | -0.073
+ Tien Nguyen             | 2017 | 2 | -0.131
+ Julian Connaughton      | 2017 | 2 | -0.144
+ Neil St. John           | 2017 | 2 | -0.325
+ Daniel Healy            | 2017 | 1 | -0.397
+ Rishi Padmanabhan       | 2017 | 1 | -0.397
+ Riya Joshi              | 2017 | 1 | -0.397
+ Christopher Kiekhaefer  | 2017 | 1 | -0.397
+ Sylvia Nguyen           | 2017 | 1 | -0.397
+ Tanvi Rakesh            | 2017 | 1 | -0.397
+ Hanna Ghouse            | 2017 | 1 | -0.397
+ Naomi Castellanos       | 2017 | 1 | -0.397
+ Nathan Ostermann        | 2017 | 1 | -0.397
+ Emmanuel Rimocal        | 2017 | 1 | -0.397
+ Nikil Shyamsunder       | 2017 | 1 | -0.397
+ Andrew Elias            | 2017 | 1 | -0.397
+ Elizabeth Tittrington   | 2017 | 1 | -0.397
+ Dhruv Kaderu            | 2017 | 1 | -0.397
+ Amelia Edelsberg        | 2017 | 1 | -0.397
+ Adith Joshua George     | 2017 | 1 | -0.397
+ Zoe Ward                | 2017 | 1 | -0.397
+ Phoebe Smith            | 2017 | 1 | -0.397
+ Delaney Williams        | 2017 | 1 | -0.397
+ Rayne Korsmo            | 2017 | 1 | -0.397
+ Amelia Ballingall       | 2017 | 1 | -0.397
+ Sydney Aslan            | 2017 | 1 | -0.397
+ Cameron Apple           | 2017 | 1 | -0.397
+ Caleb Roberts           | 2017 | 1 | -0.397
+ Josh Saylor             | 2017 | 1 | -0.397
+ Kaitlin Ryan            | 2017 | 1 | -0.397
+ Jaden Fellows           | 2017 | 1 | -0.397
+ Kelly Han               | 2017 | 1 | -0.397
+ Aashray Mandala         | 2017 | 1 | -0.397
+ Theo Thompson-Armstrong | 2017 | 1 | -0.397
+ Brent Earl Ebarle       | 2017 | 1 | -0.397
+ Thomas Kaufman          | 2017 | 1 | -0.397
+ Krutik Patel            | 2017 | 1 | -0.397
+ Langley Vernon          | 2017 | 1 | -0.397
+ Seunga Hong             | 2017 | 1 | -0.397
+ Sharanya Pastapur       | 2017 | 1 | -0.397
+ Haris Rana              | 2017 | 1 | -0.397
+ Torah Smith             | 2017 | 1 | -0.397
+ Akilan Sankaran         | 2017 | 1 | -0.397
+ Bethanya Yared          | 2017 | 1 | -0.397
+ Ava Cloonan             | 2017 | 1 | -0.397
+ Hannah Fernandes        | 2017 | 1 | -0.397
+ Aiden Arnett            | 2017 | 1 | -0.397
+ Haley Payton            | 2017 | 1 | -0.397
+ Hailey Jinkins          | 2017 | 1 | -0.397
+ Siddhant Sharma         | 2017 | 1 | -0.397
+ Melanie Mascorro        | 2017 | 1 | -0.397
+ Haebin Han              | 2017 | 1 | -0.397
+ Faith Baca              | 2017 | 1 | -0.397
+ Simone Kaplan           | 2017 | 1 | -0.397
+ Ethan Greenley          | 2017 | 1 | -0.397
+ Alyssa Faith Dela Cruz  | 2017 | 1 | -0.397
+ Jake Blackburn          | 2017 | 1 | -0.397
+ Cassidy Crawford        | 2017 | 1 | -0.397
+ Jee'von Pratt           | 2017 | 1 | -0.397
+ Casper Smith            | 2017 | 1 | -0.397
+ Jeremy Slywczak         | 2017 | 1 | -0.397
+ Jaden Zhang             | 2017 | 1 | -0.397
+ William "Liam" Myers    | 2017 | 1 | -0.690
+ Andrew Masciarelli      | 2017 | 1 | -0.690
+ Jamari Reeves           | 2017 | 1 | -0.690
+ Akshansh Ajay Kumar     | 2017 | 1 | -0.690
+ Manjeet Nirula          | 2017 | 1 | -0.690
+ Ishreet Lehal           | 2017 | 1 | -0.690
+ Alia Abou Dakka         | 2017 | 1 | -0.690
+ Ishaan Akula            | 2017 | 1 | -0.690
+ Lily Tugbah             | 2017 | 1 | -0.690
+ Jessica Rivera          | 2017 | 1 | -0.690
+ Jessie Shaw             | 2017 | 1 | -0.690
+ Lindy Murphy            | 2017 | 1 | -0.690
+ Connor Lawrence         | 2017 | 1 | -0.690
+ Joseph Benson           | 2017 | 1 | -0.690
+ Riley Meese             | 2017 | 1 | -0.690
+ Haven Griggs            | 2017 | 1 | -0.690
+ Charley Wiggins         | 2017 | 1 | -0.690
+ Collin Shea             | 2017 | 1 | -0.690
+ Emily King              | 2017 | 1 | -0.690
+ Ella Espiritu           | 2017 | 1 | -0.690
+ Z'Qi Chapman            | 2017 | 1 | -0.690
+ Kelly Haven             | 2017 | 1 | -0.690
+ Erik Dubbs              | 2017 | 1 | -0.690
+ Macey Stancato          | 2017 | 1 | -0.690
+ Zachary Hoelscher       | 2017 | 1 | -0.690
+ Brandon Anderson        | 2017 | 1 | -0.690
+ Jacob Muin              | 2017 | 1 | -0.690
+ David Firestone         | 2017 | 1 | -0.690
+ Lane Schnell            | 2017 | 1 | -0.690
 (291 rows)
 
