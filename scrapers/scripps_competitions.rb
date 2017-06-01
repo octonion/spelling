@@ -9,8 +9,6 @@ agent.user_agent = 'Mozilla/5.0'
 
 bad = " "
 
-results = CSV.open("csv/scripps_competitions_2016.csv","w")
-
 base = "http://spellingbee.com"
 
 path = '//*[@id="copyBody"]/table/tr'
