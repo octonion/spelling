@@ -1,0 +1,19 @@
+      speller      | year | n | rating 
+-------------------+------+---+--------
+ Tejas Muthusamy   | 2017 | 4 |  2.205
+ Sreeniketh Vogoti | 2017 | 2 |  2.149
+ Shourav Dasari    | 2017 | 2 |  1.882
+ Naysa Modi        | 2017 | 3 |  1.733
+ Saketh Sundar     | 2017 | 2 |  1.696
+ Mira Dedhia       | 2017 | 2 |  1.696
+ Alex Iyer         | 2017 | 2 |  1.399
+ Erin Howard       | 2017 | 2 |  1.399
+ Shruthika Padhy   | 2017 | 2 |  1.399
+ Rohan Sachdev     | 2017 | 2 |  1.315
+ Ananya Vinay      | 2017 | 2 |  1.239
+ Rohan Rajeev      | 2017 | 1 |  1.144
+ Raksheet Kota     | 2017 | 1 |  1.144
+ Shrinidhi Gopal   | 2017 | 1 |  1.144
+ Alice Liu         | 2017 | 1 |  1.144
+(15 rows)
+
