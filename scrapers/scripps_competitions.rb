@@ -9,7 +9,7 @@ agent.user_agent = 'Mozilla/5.0'
 
 bad = " "
 
-base = "http://spellingbee.com"
+base = "https://secure.spellingbee.com"
 
 path = '//*[@id="copyBody"]/table/tr'
 
@@ -20,7 +20,7 @@ last_year = ARGV[1].to_i
 
   results = CSV.open("csv/scripps_competitions_#{year}.csv","w")
 
-  url = "http://spellingbee.com/public/results/#{year}/round_results"
+  url = "https://secure.spellingbee.com/public/results/#{year}/round_results"
 
   begin
     page = agent.get(url)
