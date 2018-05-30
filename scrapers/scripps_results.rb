@@ -50,21 +50,22 @@ last_year = ARGV[1].to_i
         when 1
           td.xpath("a").each_with_index do |a,k|
             href = a.attributes["href"].value.strip rescue nil
+            absolute_href = URI.join(url,href) rescue href
             text = a.text.strip rescue nil
             text.gsub!(bad,"") rescue nil
             text.gsub!("  "," ") rescue nil
-            href = base+href
-            row += [text,href]
+            row += [text,absolute_href]
           end
 
         when 3
           td.xpath("a").each_with_index do |a,k|
             href = a.attributes["href"].value.strip rescue nil
+            absolute_href = URI.join(url,href) rescue href
             text = a.text.strip rescue nil
             text.gsub!(bad,"") rescue nil
             text.gsub!("  "," ") rescue nil
             title = a.attributes["title"].value.strip rescue nil
-            row += [text,title,href]
+            row += [text,title,absolute_href]
           end
         else
           text = td.text.strip rescue nil

@@ -45,13 +45,14 @@ last_year = ARGV[1].to_i
       when 1
         td.xpath("a").each_with_index do |a,k|
           href = a.attributes["href"].value.strip rescue nil
+          absolute_href = URI.join(url, href).to_s rescue href
           text = a.text.strip rescue nil
           text.gsub!(bad,"") rescue nil
           text.gsub!("  "," ") rescue nil
-          if (["Spelling","Vocabulary"].include?(text))
-            href = base+href
-          end
-          results << row + [k,text,href]
+          #if (["Spelling","Vocabulary"].include?(text))
+          #  href = base+href
+          #end
+          results << row + [k,text,absolute_href]
         end
       end
     end

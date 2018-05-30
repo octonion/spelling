@@ -11,13 +11,19 @@ bad = " "
 
 results = CSV.open("csv/scripps_competitions_2011.csv","w")
 
-base = "https://web.archive.org"
+base = "https://secure.spellingbee.com"
 
-path = '//*[@id="copyBody"]/center/table/tr'
+#//*[@id="copyBody"]/table/tbody/tr[1]/td[2]/a
+
+#path = '//*[@id="copyBody"]/center/table/tr'
+
+path = '//*[@id="copyBody"]/table/tr'
 
 year = 2011
 
-url = 'https://web.archive.org/web/20110716115907/http://public.spellingbee.com/public/results/2011/round_results'
+#url = 'https://web.archive.org/web/20110716115907/http://public.spellingbee.com/public/results/2011/round_results'
+
+url = 'https://secure.spellingbee.com/public/results/2011/round_results'
 
 begin
   page = agent.get(url)
@@ -42,14 +48,14 @@ page.parser.xpath(path).each_with_index do |tr,i|
     when 1
       td.xpath("a").each_with_index do |a,k|
         href = a.attributes["href"].value.strip rescue nil
+        absolute_href = URI.join(url, href).to_s
         text = a.text.strip rescue nil
         text.gsub!(bad,"") rescue nil
         text.gsub!("  "," ") rescue nil
-        results << row + [k,text,base+href]
+        results << row + [k,text,absolute_href]
       end
     end
   end
   results.flush
 end
-
 results.close
