@@ -11,14 +11,14 @@ fi
 
 psql spelling -f schema/create_schema.sql
 
-cp csv/scripps_results.csv /tmp/results.csv
-cat csv/scripps_results_201[567].csv >> /tmp/results.csv
+#cp csv/scripps_results.csv /tmp/results.csv
+cat csv/scripps_results_201?.csv >> /tmp/results.csv
 psql spelling -f loaders/load_scripps_results.sql
 rm /tmp/results.csv
 
-cat csv/scripps_results_19*.csv >> /tmp/results.csv
-cat csv/scripps_results_200*.csv >> /tmp/results.csv
-cat csv/scripps_results_201[01].csv >> /tmp/results.csv
+cat csv/scripps_results_19??.csv >> /tmp/results.csv
+cat csv/scripps_results_200?.csv >> /tmp/results.csv
+#cat csv/scripps_results_201[01].csv >> /tmp/results.csv
 psql spelling -f loaders/load_scripps_results_older.sql
 rm /tmp/results.csv
 
