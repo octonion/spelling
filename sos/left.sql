@@ -11,7 +11,7 @@ join scripps.appearances a
 join scripps._factors ar
   on (ar.parameter,ar.level)=('n',a.a_n::text)
 where
-    s.year=2017
+    s.year=2018
 and s.round_id=7
 and s.bonus_error is null
 order by rating desc;
