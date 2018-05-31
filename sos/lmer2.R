@@ -122,6 +122,6 @@ combined <- as.data.frame(do.call("rbind",results))
 
 dbWriteTable(con,c("scripps","_basic_factors"),as.data.frame(combined),row.names=TRUE)
 
-write.csv(combined, file = "foo.csv")
+#write.csv(combined, file = "foo.csv")
 
 quit("no")
