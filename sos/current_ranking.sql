@@ -11,7 +11,7 @@ join scripps.appearances a
 left join scripps._factors ar
   on (ar.level)=('n'||a.a_n::text)
 where
-s.year=2018
+s.year=2019
 order by rating desc;
 
 /*
@@ -28,6 +28,6 @@ join scripps.appearances a
 join scripps._factors ar
   on (ar.parameter,ar.level)=('n',a.a_n::text)
 where
-s.year=2018
+s.year=2019
 order by rating desc;
 */
